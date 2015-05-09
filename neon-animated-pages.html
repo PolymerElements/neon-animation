@@ -1,0 +1,131 @@
+<!--
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
+<link rel="import" href="../iron-selector/iron-selectable.html">
+<link rel="import" href="../paper-styles/paper-styles.html">
+
+<dom-module id="neon-animated-pages">
+
+  <style>
+
+    :host {
+      display: block;
+      position: relative;
+    }
+
+    :host > ::content > * {
+      @apply(--layout-fit);
+
+      display: none !important;
+    }
+
+  </style>
+
+  <template>
+    <content></content>
+  </template>
+
+</dom-module>
+
+<script>
+(function() {
+
+  Polymer({
+
+    is: 'neon-animated-pages',
+
+    behaviors: [
+      Polymer.IronResizableBehavior,
+      Polymer.IronSelectableBehavior
+    ],
+
+    properties: {
+
+      activateEvent: {
+        value: ''
+      },
+
+      _prevSelected: {
+        type: String
+      },
+
+      _animatables: {
+        type: Array,
+        value: function() {
+          return [];
+        }
+      },
+
+      _meta: {
+        type: Object,
+        value: function() {
+          return new Polymer.IronMeta({type: 'animation'});
+        }
+      }
+
+    },
+
+    observers: [
+      '_selectedChanged(selected)'
+    ],
+
+    _selectedChanged: function(selected) {
+      var selectedPage = this.items[this.selected];
+      var oldPage = this.items[this._prevSelected];
+
+      this._prevSelected = this.selected;
+
+      if (!oldPage) {
+        selectedPage.style.setProperty('display', 'block', 'important');
+        return;
+      }
+
+      // make both pages visible
+      selectedPage.style.setProperty('display', 'block', 'important');
+      selectedPage.style.setProperty('display', 'block', 'important');
+
+      // configure the animation
+      var selectedConfig = selectedPage.getAnimationConfig('entry') || [];
+      var oldConfig = oldPage.getAnimationConfig('exit') || [];
+      var allConfigs = selectedConfig.concat(oldConfig);
+
+      var allEffects = [];
+      if (allConfigs.length > 0) {
+        for (var config, index = 0; config = allConfigs[index]; index++) {
+          var animationConstructor = this._meta.byKey(config.name);
+          var animation = animationConstructor && new animationConstructor();
+          var effect = animation.configure({
+            node: config.node,
+            fromPage: oldPage
+          });
+
+          allEffects.push(effect);
+        }
+      }
+
+      if (allEffects.length > 0) {
+        var group = new GroupEffect(allEffects);
+        var player = document.timeline.play(group);
+        player.onfinish = function() {
+          oldPage.style.display = '';
+          this.async(this.notifyResize);
+        }.bind(this);
+      } else {
+        oldPage.style.display = '';
+        this.async(this.notifyResize);
+      }
+
+    }
+
+  })
+
+})();
+</script>
