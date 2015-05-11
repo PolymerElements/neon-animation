@@ -27,6 +27,17 @@ Use `Polymer.NeonAnimationBehavior` to implement an animation.
       animationEndEvent: {
         type: String,
         value: 'neon-animation-end'
+      },
+
+      animationTiming: {
+        type: Object,
+        value: function() {
+          return {
+            duration: 500,
+            easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            fill: 'both'
+          }
+        }
       }
 
     },
@@ -38,7 +49,16 @@ Use `Polymer.NeonAnimationBehavior` to implement an animation.
     /**
      * Do any animation configuration here.
      */
-    configure: function() {
+    // configure: function(config) {
+    // },
+
+    timingFromConfig: function(config) {
+      if (config.timing) {
+        for (var property in config.timing) {
+          this.animationTiming[property] = config.timing[property];
+        }
+      }
+      return this.animationTiming;
     },
 
     /**
@@ -51,7 +71,8 @@ Use `Polymer.NeonAnimationBehavior` to implement an animation.
      * Called when the animation finishes.
      */
     complete: function() {
-      this.fire(this.animationEndEvent);
+      // FIXME not sure about non-bubbling event
+      this.fire(this.animationEndEvent, null, {bubbles: false});
     }
 
   };

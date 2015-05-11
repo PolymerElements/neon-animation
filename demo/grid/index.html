@@ -19,8 +19,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <link rel="import" href="../../../paper-styles/paper-styles.html">
     <link rel="import" href="../../neon-animated-pages.html">
+    <link rel="import" href="../../neon-animations.html">
     <link rel="import" href="animated-grid.html">
-    <link rel="import" href="animated-fullsize-page.html">
+    <link rel="import" href="fullsize-page-with-card.html">
 
     <style>
 
@@ -39,8 +40,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <animated-grid on-tile-click="_onTileClick"></animated-grid>
 
-        <animated-fullsize-page id="fullsize" hero-id="hero" class="layout vertical center-center" on-click="_onFullsizeClick">
-        </animated-fullsize-page>
+        <fullsize-page-with-card id="fullsize-card" hero-id="hero" on-click="_onFullsizeClick">
+        </fullsize-page-with-card>
 
       </neon-animated-pages>
 
@@ -51,7 +52,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var scope = document.querySelector('template[is="dom-bind"]');
 
       scope._onTileClick = function(event) {
-        this.$.fullsize.style.background = getComputedStyle(event.detail.tile).background;
+        this.$['fullsize-card'].color = event.detail.data.color;
         this.$.pages.selected = 1;
       };
 

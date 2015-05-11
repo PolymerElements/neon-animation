@@ -77,6 +77,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       '_selectedChanged(selected)'
     ],
 
+    _mergeConfigs: function(config1, config2) {
+      var allConfigs = [];
+      var map = {};
+      // put configs with an id property from config1 into a map
+      for (var config, index = 0; config = config1[index]; index++) {
+        if (config.id) {
+          map[config.id] = config;
+        }
+        allConfigs.push(config);
+      }
+      // if the same id is defined in config2, merge the objects
+      for (var config, index = 0; config = config2[index]; index++) {
+        if (config.id && map[cofig.id]) {
+          var merged = {};
+          for (var property in map[config.id]) {
+            merged[property] = map[config.id][property];
+          }
+          for (var property in config) {
+            merged[property] = config[property];
+          }
+          allConfigs.push(merged);
+        } else {
+          allConfigs.push(config);
+        }
+      }
+      return allConfigs;
+    },
+
     _selectedChanged: function(selected) {
       var selectedPage = this.items[this.selected];
       var oldPage = this.items[this._prevSelected];
@@ -95,26 +123,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // configure the animation
       var selectedConfig = selectedPage.getAnimationConfig('entry') || [];
       var oldConfig = oldPage.getAnimationConfig('exit') || [];
-      var allConfigs = selectedConfig.concat(oldConfig);
+      var allConfigs = this._mergeConfigs(selectedConfig, oldConfig);
 
+      var allAnimations = [];
       var allEffects = [];
       if (allConfigs.length > 0) {
         for (var config, index = 0; config = allConfigs[index]; index++) {
           var animationConstructor = this._meta.byKey(config.name);
-          var animation = animationConstructor && new animationConstructor();
-          var effect = animation.configure({
-            node: config.node,
-            fromPage: oldPage
-          });
-
-          allEffects.push(effect);
+          if (animationConstructor) {
+            var animation = animationConstructor && new animationConstructor();
+            var effect = animation.configure(config, oldPage, selectedPage);
+            if (effect) {
+              allAnimations.push(animation);
+              allEffects.push(effect);
+            }
+          } else {
+            console.warn('neon-animated-pages:', config.name, 'not found!');
+          }
         }
       }
 
+      // create a group effect and play it
       if (allEffects.length > 0) {
         var group = new GroupEffect(allEffects);
         var player = document.timeline.play(group);
+
         player.onfinish = function() {
+          for (var animation, index = 0; animation = allAnimations[index]; index++) {
+            animation.complete();
+          }
+          player.cancel();
+
           oldPage.style.display = '';
           this.async(this.notifyResize);
         }.bind(this);
