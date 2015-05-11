@@ -20,7 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   Polymer({
 
-    is: 'slide-up-animation',
+    is: 'scale-up-animation',
 
     behaviors: [
       Polymer.NeonAnimationBehavior
@@ -30,12 +30,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var node = config.node;
       if (config.transformOrigin) {
         node.style.transformOrigin = config.transformOrigin;
-      } else {
-        node.style.transformOrigin = '50% 0';
       }
       this._effect = new KeyframeEffect(node, [
-        {'transform': 'none'},
-        {'transform': 'translate(0px,-112vh) scale(0.9,1)'}
+        {'transform': 'scale(0)'},
+        {'transform': 'scale(1)'}
       ], this.timingFromConfig(config));
       return this._effect;
     }

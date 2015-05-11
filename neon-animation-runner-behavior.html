@@ -1,0 +1,91 @@
+<!--
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+
+<script>
+
+  Polymer.NeonAnimationRunnerBehavior = {
+
+    properties: {
+
+      _animationMeta: {
+        type: Object,
+        value: function() {
+          return new Polymer.IronMeta({type: 'animation'});
+        }
+      }
+
+    },
+
+    _configureAnimationEffects: function(allConfigs, configArgs) {
+      var allAnimations = [];
+      if (allConfigs.length > 0) {
+        for (var config, index = 0; config = allConfigs[index]; index++) {
+          var animationConstructor = this._animationMeta.byKey(config.name);
+          if (animationConstructor) {
+            var animation = animationConstructor && new animationConstructor();
+            var effect;
+            if (configArgs && configArgs.length > 0) {
+              effect = animation.configure.apply(animation, [config].concat(configArgs));
+            } else {
+              effect = animation.configure(config);
+            }
+            if (effect) {
+              allAnimations.push(animation);
+            }
+          } else {
+            console.warn(this.is + ':', config.name, 'not found!');
+          }
+        }
+      }
+      return allAnimations;
+    },
+
+    _runAnimationEffects: function(allAnimations, completeCb) {
+      // create a group effect and play it
+      var allEffects = allAnimations.map(function(animation) {
+        return animation._effect;
+      });
+      var group = new GroupEffect(allEffects);
+
+      var player = document.timeline.play(group);
+
+      player.onfinish = function() {
+        for (var animation, index = 0; animation = allAnimations[index]; index++) {
+          animation.complete();
+        }
+        player.cancel();
+
+        if (completeCb) {
+          completeCb.call(this);
+        }
+
+        this.fire('neon-animation-finish', null, {bubbles: false});
+      }.bind(this);
+    },
+
+    configureAndRunAnimationEffects: function(allConfigs, configArgs, completeCb) {
+      var allAnimations = this._configureAnimationEffects(allConfigs, configArgs);
+      if (allAnimations.length > 0) {
+        this._runAnimationEffects(allAnimations, completeCb);
+      } else if (completeCb) {
+        completeCb.call(this);
+      }
+    },
+
+    playAnimation: function(type) {
+      var allConfigs = this.getAnimationConfig(type);
+      if (!allConfigs) {
+        return;
+      }
+      this.configureAndRunAnimationEffects(allConfigs);
+    }
+
+  };
+</script>
