@@ -13,18 +13,66 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   Polymer.NeonAnimatableBehavior = {
 
-    getAnimationConfig: function(type) {
-      var config = [];
-      if (this._animationConfig && this._animationConfig[type]) {
-        for (var aConfig, index = 0; aConfig = this._animationConfig[type][index]; index++) {
-          if (aConfig.animatable) {
-            config = config.concat(aConfig.animatable.getAnimationConfig(aConfig.type || type));
+    _cloneConfig: function(config) {
+      var clone = {};
+      for (property in config) {
+        clone[property] = config[property];
+      }
+      return clone;
+    },
+
+    _mergeConfigs: function(map, allConfigs, configs) {
+      // map should contain all the configs seen so far with an id
+      for (var config, index = 0; config = configs[index]; index++) {
+
+        if (config.id) {
+
+          if (map[config.id]) {
+            // if a config with the same id is in the map, merge the configs
+            for (var property in config) {
+              map[config.id][property] = config[property];
+            }
           } else {
-            config.push(aConfig);
+            // otherwise put this in the map
+            map[config.id] = this._cloneConfig(config);
+          }
+
+        } else {
+          allConfigs.push(config);
+        }
+
+      }
+      return allConfigs;
+    },
+
+    getAnimationConfig: function(type) {
+      if (!this._animationConfig) {
+        return [];
+      }
+
+      var allConfigs = [];
+      var map = [];
+      // type is optional
+      var thisConfig = (type !== undefined) ? this._animationConfig[type] : this._animationConfig;
+      if (thisConfig) {
+        for (var config, index = 0; config = thisConfig[index]; index++) {
+          if (config.animatable) {
+            allConfigs = this._mergeConfigs(map, allConfigs, config.animatable.getAnimationConfig(config.type || type));
+          } else {
+            // put any configs with an id into a map
+            if (config.id) {
+              map[config.id] = this._cloneConfig(config);
+            } else {
+              allConfigs.push(config);
+            }
           }
         }
+        // append merged configs
+        for (var key in map) {
+          allConfigs.push(map[key]);
+        }
       }
-      return config;
+      return allConfigs;
     }
 
   };

@@ -26,8 +26,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       Polymer.NeonSharedElementAnimationBehavior
     ],
 
-    configure: function(config, fromPage, toPage) {
-      var shared = this.findSharedElements(config, fromPage, toPage);
+    configure: function(config) {
+      var shared = this.findSharedElements(config);
       if (!shared) {
         return null;
       }
@@ -40,7 +40,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var deltaWidth = fromRect.width / toRect.width;
       var deltaHeight = fromRect.height / toRect.height;
 
-      shared.to.style.transformOrigin = '0 0';
+      this.setPrefixedProperty(shared.to, 'transformOrigin', '0 0');
+
       this._effect = new KeyframeEffect(shared.to, [
         {'transform': 'translate(' + deltaLeft + 'px,' + deltaTop + 'px) scale(' + deltaWidth + ',' + deltaHeight + ')'},
         {'transform': 'none'}

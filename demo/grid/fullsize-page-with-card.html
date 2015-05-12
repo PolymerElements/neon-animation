@@ -78,11 +78,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           return {
             'entry': [{
               name: 'ripple-animation',
-              sharedElementId: 'ripple',
-              id: 'shared-ripple'
+              id: 'ripple',
+              toPage: this,
             }, {
               name: 'hero-animation',
-              sharedElementId: 'hero',
+              id: 'hero',
+              toPage: this,
               timing: {
                 delay: 150
               }

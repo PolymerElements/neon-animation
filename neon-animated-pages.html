@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="../iron-selector/iron-selectable.html">
 <link rel="import" href="../paper-styles/paper-styles.html">
+<link rel="import" href="neon-animatable-behavior.html">
 <link rel="import" href="neon-animation-runner-behavior.html">
 
 <dom-module id="neon-animated-pages">
@@ -45,6 +46,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     behaviors: [
       Polymer.IronResizableBehavior,
       Polymer.IronSelectableBehavior,
+      Polymer.NeonAnimatableBehavior,
       Polymer.NeonAnimationRunnerBehavior
     ],
 
@@ -64,59 +66,53 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       '_selectedChanged(selected)'
     ],
 
-    _mergeConfigs: function(config1, config2) {
-      var allConfigs = [];
-      var map = {};
-      // put configs with an id property from config1 into a map
-      for (var config, index = 0; config = config1[index]; index++) {
-        if (config.id) {
-          map[config.id] = config;
-        }
-        allConfigs.push(config);
-      }
-      // if the same id is defined in config2, merge the objects
-      for (var config, index = 0; config = config2[index]; index++) {
-        if (config.id && map[config.id]) {
-          var merged = {};
-          for (var property in map[config.id]) {
-            merged[property] = map[config.id][property];
-          }
-          for (var property in config) {
-            merged[property] = config[property];
-          }
-          allConfigs.push(merged);
-        } else {
-          allConfigs.push(config);
-        }
-      }
-      return allConfigs;
+    listeners: {
+      'neon-animation-finish': '_onNeonAnimationFinish'
     },
 
     _selectedChanged: function(selected) {
       var selectedPage = this.items[this.selected];
       var oldPage = this.items[this._prevSelected];
 
-      this._prevSelected = this.selected;
-
       if (!oldPage) {
         selectedPage.style.setProperty('display', 'block', 'important');
+        this._onNeonAnimationFinish();
         return;
       }
 
-      // make both pages visible
-      selectedPage.style.setProperty('display', 'block', 'important');
+      // make the selected page display:block but opacity:0 - prevents safari/webkit from drawing
+      // a frame before the animation is set up
       selectedPage.style.setProperty('display', 'block', 'important');
 
       // configure the animation
-      var selectedConfig = selectedPage.getAnimationConfig('entry') || [];
-      var oldConfig = oldPage.getAnimationConfig('exit') || [];
-      var allConfigs = this._mergeConfigs(selectedConfig, oldConfig);
+      this._animationConfig = [{
+        name: 'opaque-animation',
+        node: selectedPage
+      }, {
+        animatable: selectedPage,
+        type: 'entry'
+      }, {
+        animatable: oldPage,
+        type: 'exit'
+      }];
 
-      var allAnimations = this.configureAndRunAnimationEffects(allConfigs, [oldPage, selectedPage], function() {
+      this.playAnimation();
+    },
+
+    _onNeonAnimationFinish: function() {
+      var selectedPage = this.items[this.selected];
+      var oldPage = this.items[this._prevSelected];
+
+      if (selectedPage) {
+        selectedPage.style.opacity = '';
+      }
+      if (oldPage) {
         oldPage.style.display = '';
-        this.async(this.notifyResize);
-      });
+      }
 
+      this._prevSelected = this.selected;
+
+      this.async(this.notifyResize);
     }
 
   })

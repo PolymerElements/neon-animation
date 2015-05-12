@@ -50,7 +50,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var scaleY = diameter / toRect.height;
       var scale = 'scale(' + scaleX + ',' + scaleY + ')';
 
-      shared.to.style.transformOrigin = '50% 50%';
+      this.setPrefixedProperty(shared.to, 'transformOrigin', '50% 50%');
       shared.to.style.borderRadius = '50%';
 
       this._effect = new KeyframeEffect(shared.to, [

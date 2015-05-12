@@ -23,21 +23,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     },
 
-    _configureAnimationEffects: function(allConfigs, configArgs) {
+    _configureAnimationEffects: function(allConfigs) {
       var allAnimations = [];
       if (allConfigs.length > 0) {
         for (var config, index = 0; config = allConfigs[index]; index++) {
           var animationConstructor = this._animationMeta.byKey(config.name);
           if (animationConstructor) {
             var animation = animationConstructor && new animationConstructor();
-            var effect;
-            if (configArgs && configArgs.length > 0) {
-              effect = animation.configure.apply(animation, [config].concat(configArgs));
-            } else {
-              effect = animation.configure(config);
-            }
+            var effect = animation.configure(config);
             if (effect) {
-              allAnimations.push(animation);
+              allAnimations.push({
+                animation: animation,
+                config: config,
+                effect: effect
+              });
             }
           } else {
             console.warn(this.is + ':', config.name, 'not found!');
@@ -47,35 +46,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       return allAnimations;
     },
 
-    _runAnimationEffects: function(allAnimations, completeCb) {
-      // create a group effect and play it
-      var allEffects = allAnimations.map(function(animation) {
-        return animation._effect;
-      });
-      var group = new GroupEffect(allEffects);
-
-      var player = document.timeline.play(group);
-
-      player.onfinish = function() {
-        for (var animation, index = 0; animation = allAnimations[index]; index++) {
-          animation.complete();
-        }
-        player.cancel();
-
-        if (completeCb) {
-          completeCb.call(this);
-        }
-
-        this.fire('neon-animation-finish', null, {bubbles: false});
-      }.bind(this);
+    _runAnimationEffects: function(allEffects) {
+      return player = document.timeline.play(new GroupEffect(allEffects));
     },
 
-    configureAndRunAnimationEffects: function(allConfigs, configArgs, completeCb) {
-      var allAnimations = this._configureAnimationEffects(allConfigs, configArgs);
-      if (allAnimations.length > 0) {
-        this._runAnimationEffects(allAnimations, completeCb);
-      } else if (completeCb) {
-        completeCb.call(this);
+    _completeAnimations: function(allAnimations) {
+      for (var animation, index = 0; animation = allAnimations[index]; index++) {
+        animation.animation.complete(animation.config);
       }
     },
 
@@ -84,7 +61,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (!allConfigs) {
         return;
       }
-      this.configureAndRunAnimationEffects(allConfigs);
+      var allAnimations = this._configureAnimationEffects(allConfigs);
+      var allEffects = allAnimations.map(function(animation) {
+        return animation.effect;
+      });
+
+      if (allEffects.length > 0) {
+        var player = this._runAnimationEffects(allEffects);
+        player.onfinish = function() {
+          this._completeAnimations(allAnimations);
+          player.cancel();
+
+          this.fire('neon-animation-finish', null, {bubbles: false});
+        }.bind(this);
+      } else {
+        this.fire('neon-animation-finish', null, {bubbles: false});
+      }
     }
 
   };

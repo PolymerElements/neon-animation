@@ -118,8 +118,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           return {
             'exit': [{
               name: 'ripple-animation',
-              sharedElementId: 'ripple',
-              id: 'shared-ripple'
+              id: 'ripple',
+              fromPage: this
+            }, {
+              name: 'hero-animation',
+              id: 'hero',
+              fromPage: this
             }]
           }
         }
