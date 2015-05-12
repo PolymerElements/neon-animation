@@ -40,7 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div id="toolbar" class="toolbar"></div>
 
-    <animated-grid></animated-grid>
+    <animated-grid id="grid"></animated-grid>
 
   </template>
 
@@ -66,6 +66,9 @@ Polymer({
           'entry': [{
             name: 'slide-down-animation',
             node: this.$.toolbar
+          }, {
+            animatable: this.$.grid,
+            type: 'entry'
           }]
         };
       }
