@@ -12,6 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../paper-styles/paper-styles.html">
 <link rel="import" href="neon-animatable-behavior.html">
 <link rel="import" href="neon-animation-runner-behavior.html">
+<link rel="import" href="animations/opaque-animation.html">
 
 <dom-module id="neon-animated-pages">
 
@@ -24,7 +25,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     :host > ::content > * {
       @apply(--layout-fit);
+      height: 100%;
+    }
 
+    :host > ::content > :not(.iron-selected):not(.neon-animating) {
       display: none !important;
     }
 
@@ -75,28 +79,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var oldPage = this.items[this._prevSelected];
 
       if (!oldPage) {
-        selectedPage.style.setProperty('display', 'block', 'important');
         this._onNeonAnimationFinish();
         return;
       }
 
-      // make the selected page display:block but opacity:0 - prevents safari/webkit from drawing
-      // a frame before the animation is set up
-      selectedPage.style.setProperty('display', 'block', 'important');
+      // display the oldPage during the transition.
+      oldPage.classList.add('neon-animating');
 
       // configure the animation
       this._animationConfig = [{
         name: 'opaque-animation',
         node: selectedPage
-      }, {
-        animatable: selectedPage,
-        type: 'entry'
-      }, {
-        animatable: oldPage,
-        type: 'exit'
       }];
 
-      this.playAnimation();
+      if (selectedPage.getAnimationConfig) {
+        this._animationConfig.push({
+          animatable: selectedPage,
+          type: 'entry'
+        });
+      }
+
+      if (oldPage.getAnimationConfig) {
+        this._animationConfig.push({
+          animatable: oldPage,
+          type: 'exit'
+        });
+      }
+
+      if (this._animationConfig.length > 1) {
+        this.playAnimation();
+      } else {
+        this._onNeonAnimationFinish();
+      }
     },
 
     _onNeonAnimationFinish: function() {
@@ -107,7 +121,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         selectedPage.style.opacity = '';
       }
       if (oldPage) {
-        oldPage.style.display = '';
+        oldPage.classList.remove('neon-animating');
       }
 
       this._prevSelected = this.selected;

@@ -41,6 +41,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var deltaHeight = fromRect.height / toRect.height;
 
       this.setPrefixedProperty(shared.to, 'transformOrigin', '0 0');
+      shared.to.style.zIndex = 10000;
+      shared.from.style.visibility = 'hidden';
 
       this._effect = new KeyframeEffect(shared.to, [
         {'transform': 'translate(' + deltaLeft + 'px,' + deltaTop + 'px) scale(' + deltaWidth + ',' + deltaHeight + ')'},
@@ -48,6 +50,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ], this.timingFromConfig(config));
 
       return this._effect;
+    },
+
+    complete: function(config) {
+      var shared = this.findSharedElements(config);
+      if (!shared) {
+        return null;
+      }
+      shared.to.style.zIndex = '';
+      shared.from.style.visibility = '';
     }
 
   });
