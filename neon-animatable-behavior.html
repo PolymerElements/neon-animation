@@ -13,6 +13,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   Polymer.NeonAnimatableBehavior = {
 
+    properties: {
+
+      _animatables: {
+        type: Array,
+        value: function() {
+          return [];
+        }
+      }
+    },
+
+    listeners: {
+      'neon-animatable-attached': '_onAnimatableAttached',
+      'neon-animatable-detached': '_onAnimatableDetached'
+    },
+
+    _onAnimatableAttached: function(event) {
+      // FIXME need to debug behavior weirdness
+      this.async(function() {
+        if (event.target !== this) {
+          this._animatables.push(event.target);
+          event.stopPropagation();
+        }
+      });
+    },
+
+    _onAnimatableDetached: function(event) {
+      // FIXME: remove from _animatables
+    },
+
     attached: function() {
       this.fire('neon-animatable-attached');
     },
@@ -22,7 +51,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     getAnimationConfig: function(type) {
-      return this._animationConfig && this._animationConfig[type];
+      var config = [];
+      if (this._animationConfig) {
+        config = config.concat(this._animationConfig[type]);
+      }
+      for (var animatable, index = 0; animatable = this._animatables[index]; index++) {
+        config = config.concat(animatable.getAnimationConfig(type));
+      }
+      return config;
     }
 
   };

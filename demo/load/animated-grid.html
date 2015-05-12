@@ -116,10 +116,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: Object,
         value: function() {
           return {
-            'exit': [{
-              name: 'ripple-animation',
-              sharedElementId: 'ripple',
-              id: 'shared-ripple'
+            'entry': [{
+              name: 'cascade-slide-up-animation'
             }]
           }
         }
@@ -127,34 +125,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     },
 
-    listeners: {
-      click: '_onClick'
+    attached: function() {
+      this.async(function() {
+        var nodeList = Polymer.dom(this.root).querySelectorAll('.tile');
+        this._animationConfig['entry'][0].nodes = Array.prototype.slice.call(nodeList);
+      });
     },
 
     _computeTileClass: function(color) {
       return 'tile ' + color + '-300';
-    },
-
-    _onClick: function(event) {
-      var target = event.target;
-      while (target !== this && !target._templateInstance) {
-        target = target.parentNode;
-      }
-
-      // configure the page animation
-      this.sharedElements = {
-        'hero': target,
-        'ripple': target
-      };
-      this._animationConfig['exit'][0].gesture = {
-        x: event.x,
-        y: event.y
-      };
-
-      this.fire('tile-click', {
-        tile: target,
-        data: target._templateInstance.item
-      });
     }
 
   });
