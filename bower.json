@@ -1,5 +1,5 @@
 {
-  "name": "neon-animated-pages",
+  "name": "neon-animation",
   "version": "0.9.0",
   "authors": [
     "The Polymer Authors"
@@ -7,18 +7,18 @@
   "keywords": [
     "web-components",
     "web-component",
-    "polymer"
+    "polymer",
+    "web-animations"
   ],
   "main": [
-    "neon-animated-pages.html"
   ],
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git://github.com/PolymerElements/neon-animated-pages"
+    "url": "git://github.com/PolymerElements/neon-animation"
   },
   "license": "MIT",
-  "homepage": "https://github.com/PolymerElements/neon-animated-pages",
+  "homepage": "https://github.com/PolymerElements/neon-animation",
   "ignore": [],
   "dependencies": {
     "polymer": "Polymer/polymer#v0.9.0-rc.1",

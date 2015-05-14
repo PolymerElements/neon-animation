@@ -1,2 +1,2 @@
-# neon-animated-pages
-Animated page transitions
+# neon-animations
+Animations for Polymer
