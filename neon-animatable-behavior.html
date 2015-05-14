@@ -13,6 +13,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   Polymer.NeonAnimatableBehavior = {
 
+    properties: {
+
+      /**
+       * Convenience property for setting an 'entry' animation. Do not set _animationConfig.entry
+       * manually if using this. The animated node is set to `this` if using this property.
+       */
+      entryAnimation: {
+        observer: '_entryAnimationChanged',
+        type: String
+      },
+
+      /**
+       * Convenience property for setting an 'exit' animation. Do not set _animationConfig.exit
+       * manually if using this. The animated node is set to `this` if using this property.
+       */
+      exitAnimation: {
+        observer: '_exitAnimationChanged',
+        type: String
+      }
+
+    },
+
+    _entryAnimationChanged: function() {
+      this._animationConfig = this._animationConfig || {};
+      this._animationConfig['entry'] = [{
+        name: this.entryAnimation,
+        node: this
+      }];
+    },
+
+    _exitAnimationChanged: function() {
+      this._animationConfig = this._animationConfig || {};
+      this._animationConfig['exit'] = [{
+        name: this.exitAnimation,
+        node: this
+      }];
+    },
+
     _cloneConfig: function(config) {
       var clone = {};
       for (property in config) {
