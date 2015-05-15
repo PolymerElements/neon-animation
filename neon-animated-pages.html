@@ -83,6 +83,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return;
       }
 
+      selectedPage.classList.add('neon-animating');
       // display the oldPage during the transition.
       oldPage.classList.add('neon-animating');
 
@@ -119,6 +120,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       if (selectedPage) {
         selectedPage.style.opacity = '';
+        selectedPage.classList.remove('neon-animating');
       }
       if (oldPage) {
         oldPage.classList.remove('neon-animating');

@@ -13,37 +13,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../web-animations.html">
 
 <!--
-
 -->
 
 <script>
 
   Polymer({
 
-    is: 'cascade-slide-up-animation',
+    is: 'cascaded-animation',
 
     behaviors: [
       Polymer.NeonAnimationBehavior
     ],
 
+    properties: {
+
+      _animationMeta: {
+        type: Object,
+        value: function() {
+          return new Polymer.IronMeta({type: 'animation'});
+        }
+      }
+
+    },
+
     configure: function(config) {
+      var animationConstructor = this._animationMeta.byKey(config.animation);
+      if (!animationConstructor) {
+        console.warn(this.is + ':', 'constructor for', config.animation, 'not found!');
+        return;
+      }
+
       var nodes = config.nodes;
       var effects = [];
-      var timing = this.timingFromConfig(config);
+      var nodeDelay = config.nodeDelay || 50;
 
+      config.timing = config.timing || {};
+      config.timing.delay = config.timing.delay || 0;
+
+      var oldDelay = config.timing.delay;
       for (var node, index = 0; node = nodes[index]; index++) {
-        // delay the animation for each node
-        var nodeTiming = {};
-        for (var property in timing) {
-          nodeTiming[property] = timing[property];
-        }
-        nodeTiming.delay = index * 50;
+        config.timing.delay += index * nodeDelay;
+        config.node = node;
 
-        effects.push(new KeyframeEffect(node, [
-          {'transform': 'translateY(100%)'},
-          {'transform': 'none'}
-        ], nodeTiming));
+        var animation = new animationConstructor();
+        var effect = animation.configure(config);
+
+        effects.push(effect);
       }
+      config.timing.delay = oldDelay;
 
       this._effect = new GroupEffect(effects);
       return this._effect;

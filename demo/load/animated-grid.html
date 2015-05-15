@@ -117,7 +117,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         value: function() {
           return {
             'entry': [{
-              name: 'cascade-slide-up-animation'
+              name: 'cascaded-animation',
+              animation: 'transform-animation',
+              transformFrom: 'translateY(100%)',
+              transformTo: 'none',
+              timing: {
+                delay: 50
+              }
             }]
           }
         }
