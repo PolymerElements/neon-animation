@@ -32,6 +32,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       display: none !important;
     }
 
+    :host > ::content > .neon-animating {
+      pointer-events: none;
+    }
+
   </style>
 
   <template>
@@ -78,9 +82,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var selectedPage = this.items[this.selected];
       var oldPage = this.items[this._prevSelected];
 
+      this._prevSelected = this.selected;
+
       if (!oldPage) {
         this._onNeonAnimationFinish();
         return;
+      }
+
+      // cancel the currently running animation if one is ongoing.
+      if (oldPage.classList.contains('neon-animating')) {
+        this.cancelAnimation();
       }
 
       selectedPage.classList.add('neon-animating');
@@ -115,8 +126,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _onNeonAnimationFinish: function() {
-      var selectedPage = this.items[this.selected];
-      var oldPage = this.items[this._prevSelected];
+      if (!this._animationConfig) {
+        return;
+      }
+
+      var selectedPage;
+      var oldPage;
+      for (var config, index = 0; config = this._animationConfig[index]; index++) {
+        if (config.type === 'entry') {
+          selectedPage = config.animatable;
+        }
+        if (config.type === 'exit') {
+          oldPage = config.animatable;
+        }
+      }
+      console.log('_onNeonAnimationFinish', selectedPage, oldPage);
 
       if (selectedPage) {
         selectedPage.style.opacity = '';
@@ -125,8 +149,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (oldPage) {
         oldPage.classList.remove('neon-animating');
       }
-
-      this._prevSelected = this.selected;
 
       this.async(this.notifyResize);
     }

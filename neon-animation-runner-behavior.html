@@ -19,6 +19,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         value: function() {
           return new Polymer.IronMeta({type: 'animation'});
         }
+      },
+
+      _player: {
+        type: Object
       }
 
     },
@@ -67,16 +71,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
 
       if (allEffects.length > 0) {
-        var player = this._runAnimationEffects(allEffects);
-        player.onfinish = function() {
+        this._player = this._runAnimationEffects(allEffects);
+        this._player.onfinish = function() {
           this._completeAnimations(allAnimations);
-          player.cancel();
+
+          if (this._player) {
+            this._player.cancel();
+            this._player = null;
+          }
 
           this.fire('neon-animation-finish', null, {bubbles: false});
         }.bind(this);
 
       } else {
         this.fire('neon-animation-finish', null, {bubbles: false});
+      }
+    },
+
+    cancelAnimation: function() {
+      if (this._player) {
+        this._player.cancel();
       }
     }
 
