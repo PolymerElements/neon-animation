@@ -51,64 +51,74 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }];
     },
 
-    _cloneConfig: function(config) {
-      var clone = {};
-      for (property in config) {
-        clone[property] = config[property];
+    _copyProperties: function(config1, config2) {
+      // shallowly copy properties from config2 to config1
+      for (var property in config2) {
+        config1[property] = config2[property];
       }
+    },
+
+    _cloneConfig: function(config) {
+      var clone = {
+        isClone: true
+      };
+      this._copyProperties(clone, config);
       return clone;
     },
 
-    _mergeConfigs: function(map, allConfigs, configs) {
-      // map should contain all the configs seen so far with an id
-      for (var config, index = 0; config = configs[index]; index++) {
-
-        if (config.id) {
-
-          if (map[config.id]) {
-            // if a config with the same id is in the map, merge the configs
-            for (var property in config) {
-              map[config.id][property] = config[property];
-            }
-          } else {
-            // otherwise put this in the map
-            map[config.id] = this._cloneConfig(config);
-          }
-
-        } else {
-          allConfigs.push(config);
-        }
-
-      }
-      return allConfigs;
-    },
-
-    getAnimationConfig: function(type) {
+    _getAnimationConfigRecursive: function(type, map, allConfigs) {
       if (!this._animationConfig) {
-        return [];
+        return;
       }
 
-      var allConfigs = [];
-      var map = [];
       // type is optional
-      var thisConfig = (type !== undefined) ? this._animationConfig[type] : this._animationConfig;
+      var thisConfig;
+      if (type) {
+        thisConfig = this._animationConfig[type];
+      } else {
+        thisConfig = this._animationConfig;
+      }
+
+      // iterate animations and recurse to process configurations from child nodes
       if (thisConfig) {
         for (var config, index = 0; config = thisConfig[index]; index++) {
           if (config.animatable) {
-            allConfigs = this._mergeConfigs(map, allConfigs, config.animatable.getAnimationConfig(config.type || type));
+            config.animatable._getAnimationConfigRecursive(config.type || type, map, allConfigs);
           } else {
-            // put any configs with an id into a map
             if (config.id) {
-              map[config.id] = this._cloneConfig(config);
+              var cachedConfig = map[config.id];
+              if (cachedConfig) {
+                // merge configurations with the same id, making a clone lazily
+                if (!cachedConfig.isClone) {
+                  map[config.id] = this._cloneConfig(cachedConfig)
+                  cachedConfig = map[config.id];
+                }
+                this._copyProperties(cachedConfig, config);
+              } else {
+                // put any configs with an id into a map
+                map[config.id] = config;
+              }
             } else {
               allConfigs.push(config);
             }
           }
         }
-        // append merged configs
-        for (var key in map) {
-          allConfigs.push(map[key]);
-        }
+      }
+    },
+
+    /**
+     * An element implementing `Polymer.NeonAnimationRunnerBehavior` calls this method to configure
+     * an animation with an optional type. Elements implementing `Polymer.NeonAnimatableBehavior`
+     * should define the private property `_animationConfig`, which is either a configuration object
+     * or a map of animation type to array of configuration objects.
+     */
+    getAnimationConfig: function(type) {
+      var map = [];
+      var allConfigs = [];
+      this._getAnimationConfigRecursive(type, map, allConfigs);
+      // append the configurations saved in the map to the array
+      for (var key in map) {
+        allConfigs.push(map[key]);
       }
       return allConfigs;
     }
