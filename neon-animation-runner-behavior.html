@@ -7,10 +7,11 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="neon-animatable-behavior.html">
 
 <script>
 
-  Polymer.NeonAnimationRunnerBehavior = {
+  Polymer.NeonAnimationRunnerBehavior = [Polymer.NeonAnimatableBehavior, {
 
     properties: {
 
@@ -94,5 +95,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     }
 
-  };
+  }];
 </script>

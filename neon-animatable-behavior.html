@@ -79,6 +79,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         thisConfig = this._animationConfig;
       }
 
+      if (!Array.isArray(thisConfig)) {
+        thisConfig = [thisConfig];
+      }
+
       // iterate animations and recurse to process configurations from child nodes
       if (thisConfig) {
         for (var config, index = 0; config = thisConfig[index]; index++) {

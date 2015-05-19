@@ -7,21 +7,19 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../../../polymer/polymer.html">
-<link rel="import" href="../../../paper-styles/paper-styles.html">
 <link rel="import" href="../../neon-animation-runner-behavior.html">
+<link rel="import" href="../../animations/scale-down-animation.html">
 
-
-<dom-module id="animated-dropdown">
+<dom-module id="my-animatable">
 
   <style>
 
     :host {
-      display: none;
-      padding: 16px;
-      background: white;
-      color: black;
-
-      @apply(--shadow-elevation-2dp);
+      display: inline-block;
+      border-radius: 50%;
+      width: 300px;
+      height: 300px;
+      background: orange;
     }
 
   </style>
@@ -38,7 +36,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   Polymer({
 
-    is: 'animated-dropdown',
+    is: 'my-animatable',
 
     behaviors: [
       Polymer.NeonAnimationRunnerBehavior
@@ -50,46 +48,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: Object,
         value: function() {
           return {
-            'entry': [{
-              name: 'scale-up-animation',
-              node: this,
-              transformOrigin: '0 0'
-            }],
-            'exit': [{
-              name: 'fade-out-animation',
-              node: this
-            }]
+            name: 'scale-down-animation',
+            node: this
           }
         }
-      },
-
-      _showing: {
-        type: Boolean,
-        value: false
       }
 
     },
 
     listeners: {
-      'neon-animation-finish': '_onAnimationFinish'
+      'neon-animation-finish': '_onNeonAnimationFinish'
     },
 
-    _onAnimationFinish: function() {
-      if (this._showing) {
-      } else {
-        this.style.display = '';
-      }
+    animate: function() {
+      this.playAnimation();
     },
 
-    show: function() {
-      this.style.display = 'inline-block';
-      this._showing = true;
-      this.playAnimation('entry');
-    },
-
-    hide: function() {
-      this._showing = false;
-      this.playAnimation('exit');
+    _onNeonAnimationFinish: function() {
+      console.log('animation finish!');
     }
 
   });
