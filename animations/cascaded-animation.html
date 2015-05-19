@@ -52,7 +52,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       var oldDelay = config.timing.delay;
       for (var node, index = 0; node = nodes[index]; index++) {
-        config.timing.delay += index * nodeDelay;
+        config.timing.delay += nodeDelay;
         config.node = node;
 
         var animation = new animationConstructor();
