@@ -89,13 +89,15 @@ animations to be run when switching to or switching out of the page.
       this._prevSelected = this.selected;
 
       if (!oldPage) {
-        this._onNeonAnimationFinish();
+        this._completeSelectedChanged();
         return;
       }
 
       // cancel the currently running animation if one is ongoing.
       if (oldPage.classList.contains('neon-animating')) {
+        this._squelchNextFinishEvent = true;
         this.cancelAnimation();
+        this._completeSelectedChanged();
       }
 
       selectedPage.classList.add('neon-animating');
@@ -125,35 +127,32 @@ animations to be run when switching to or switching out of the page.
       if (this.animationConfig.length > 1) {
         this.playAnimation();
       } else {
-        this._onNeonAnimationFinish();
+        this._completeSelectedChanged(oldPage, selectedPage);
       }
     },
 
-    _onNeonAnimationFinish: function() {
-      if (!this.animationConfig) {
-        return;
-      }
-
-      var selectedPage;
-      var oldPage;
-      for (var config, index = 0; config = this.animationConfig[index]; index++) {
-        if (config.type === 'entry') {
-          selectedPage = config.animatable;
-        }
-        if (config.type === 'exit') {
-          oldPage = config.animatable;
-        }
-      }
-
+    _completeSelectedChanged: function(oldPage, selectedPage) {
       if (selectedPage) {
-        selectedPage.style.opacity = '';
         selectedPage.classList.remove('neon-animating');
       }
       if (oldPage) {
         oldPage.classList.remove('neon-animating');
       }
-
+      if (!selectedPage || !oldPage) {
+        var nodes = Polymer.dom(this).querySelectorAll('.neon-animating');
+        for (var node, index = 0; node = nodes[index]; index++) {
+          node.classList.remove('neon-animating');
+        }
+      }
       this.async(this.notifyResize);
+    },
+
+    _onNeonAnimationFinish: function(event) {
+      if (!this._squelchNextFinishEvent) {
+        this._squelchNextFinishEvent = false;
+        return;
+      }
+      this._completeSelectedChanged(event.detail.fromPage, event.detail.toPage);
     }
 
   })
