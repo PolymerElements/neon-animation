@@ -148,7 +148,7 @@ animations to be run when switching to or switching out of the page.
     },
 
     _onNeonAnimationFinish: function(event) {
-      if (!this._squelchNextFinishEvent) {
+      if (this._squelchNextFinishEvent) {
         this._squelchNextFinishEvent = false;
         return;
       }
