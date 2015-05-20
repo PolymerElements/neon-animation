@@ -257,7 +257,6 @@ Single element animations:
  * `scale-up-animation` Animates transform from `scale(0)` to `scale(1)`.
  * `slide-down-animation` Animates transform from `translateY(-100%)` to `none`.
  * `slide-up-animation` Animates transform from `none` to `translateY(-100%)`.
- * `slide-up-scale-down-animation` Animates transform from `none` to `translate(0px,-200vh) scale(0.9,1)`.
  * `transform-animation` Animates a custom transform.
 
 Note that there is a restriction that only one transform animation can be applied on the same element at a time. Use the custom `transform-animation` to combine transform properties.
