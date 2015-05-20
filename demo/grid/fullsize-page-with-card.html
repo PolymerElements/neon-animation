@@ -72,7 +72,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       },
 
-      _animationConfig: {
+      animationConfig: {
         type: Object,
         value: function() {
           return {
@@ -92,7 +92,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               name: 'fade-out-animation',
               node: this.$.fixed
             }, {
-              name: 'slide-up-scale-down-animation',
+              name: 'transform-animation',
+              transformFrom: 'none',
+              transformTo: 'translate(0px,-200vh) scale(0.9,1)',
               node: this.$.card
             }]
           }

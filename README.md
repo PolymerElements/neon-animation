@@ -27,7 +27,7 @@ Polymer({
     Polymer.NeonAnimationRunnerBehavior
   ],
   properties: {
-    _animationConfig: {
+    animationConfig: {
       value: function() {
         return {
           // provided by neon-animation/animations/scale-down-animation.html
@@ -59,7 +59,7 @@ Polymer({
 <a name="configuration-types"></a>
 ### Animation types
 
-An element might run different animations, for example it might do something different when it enters the view and when it exits from view. You can set the `_animationConfig` property to a map from an animation type to configuration.
+An element might run different animations, for example it might do something different when it enters the view and when it exits from view. You can set the `animationConfig` property to a map from an animation type to configuration.
 
 ```js
 Polymer({
@@ -72,7 +72,7 @@ Polymer({
     opened: {
       type: Boolean
     },
-    _animationConfig: {
+    animationConfig: {
       value: function() {
         return {
           'entry': {
@@ -148,7 +148,7 @@ Animations may define additional configuration properties and they are listed in
 Set the animation configuration to an array to combine animations, like this:
 
 ```js
-_animationConfig: {
+animationConfig: {
   value: function() {
     return {
       // fade-in-animation is run with a 50ms delay from slide-down-animation
@@ -171,7 +171,7 @@ _animationConfig: {
 You can include animations in the configuration that are encapsulated in a child element that implement `Polymer.NeonAnimatableBehavior` with the `animatable` property.
 
 ```js
-_animationConfig: {
+animationConfig: {
   value: function() {
     return {
       // run fade-in-animation on this, and the entry animation on this.$.myAnimatable
@@ -198,7 +198,7 @@ In the incoming page:
 
 ```js
 properties: {
-  _animationConfig: {
+  animationConfig: {
     value: function() {
       return {
         // the incoming page defines the 'entry' animation
@@ -224,7 +224,7 @@ In the outgoing page:
 
 ```js
 properties: {
-  _animationConfig: {
+  animationConfig: {
     value: function() {
       return {
         // the outgoing page defines the 'exit' animation
@@ -261,7 +261,7 @@ Single element animations:
  * `transform-animation` Animates a custom transform.
 
 Note that there is a restriction that only one transform animation can be applied on the same element at a time. Use the custom `transform-animation` to combine transform properties.
- 
+
 Shared element animations
 
  * `hero-animation` Animates an element such that it looks like it scales and transforms from another element.

@@ -56,7 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     properties: {
 
-      _animationConfig: {
+      animationConfig: {
         value: function() {
           var circles = Polymer.dom(this.root).querySelectorAll('.circle');
           var circlesArray = Array.prototype.slice.call(circles);
@@ -99,7 +99,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             nodesToScale.push(node);
           }
         }
-        this._animationConfig['exit'][1].nodes = nodesToScale;
+        this.animationConfig['exit'][1].nodes = nodesToScale;
 
         this.fire('circle-click');
       }

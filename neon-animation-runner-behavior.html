@@ -9,6 +9,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="neon-animatable-behavior.html">
 
+<!--
+`Polymer.NeonAnimationRunnerBehavior` adds a method to run animations.
+@polymerBehavior
+-->
+
 <script>
 
   Polymer.NeonAnimationRunnerBehavior = [Polymer.NeonAnimatableBehavior, {
@@ -61,6 +66,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     },
 
+    /**
+     * Plays an animation with an optional `type`.
+     */
     playAnimation: function(type) {
       var allConfigs = this.getAnimationConfig(type);
       if (!allConfigs) {
@@ -89,6 +97,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     },
 
+    /**
+     * Cancels the currently running animation.
+     */
     cancelAnimation: function() {
       if (this._player) {
         this._player.cancel();

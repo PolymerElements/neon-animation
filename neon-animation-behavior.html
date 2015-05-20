@@ -13,22 +13,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <!--
 Use `Polymer.NeonAnimationBehavior` to implement an animation.
+@polymerBehavior
 -->
 
 <script>
+
 
   Polymer.NeonAnimationBehavior = {
 
     properties: {
 
       /**
-       * The event to fire when this animation completes.
+       * Defines the animation timing.
        */
-      animationEndEvent: {
-        type: String,
-        value: 'neon-animation-end'
-      },
-
       animationTiming: {
         type: Object,
         value: function() {
@@ -52,6 +49,10 @@ Use `Polymer.NeonAnimationBehavior` to implement an animation.
     // configure: function(config) {
     // },
 
+    /**
+     * Returns the animation timing by mixing in properties from `config` to the defaults defined
+     * by the animation.
+     */
     timingFromConfig: function(config) {
       if (config.timing) {
         for (var property in config.timing) {
@@ -61,6 +62,9 @@ Use `Polymer.NeonAnimationBehavior` to implement an animation.
       return this.animationTiming;
     },
 
+    /**
+     * Sets `transform` and `transformOrigin` properties along with the prefixed versions.
+     */
     setPrefixedProperty: function(node, property, value) {
       var map = {
         'transform': 'webkitTransform',
@@ -68,12 +72,6 @@ Use `Polymer.NeonAnimationBehavior` to implement an animation.
       };
       node.style[map[property]] = value;
       node.style[property] = value;
-    },
-
-    /**
-     * Run the animation.
-     */
-    run: function() {
     },
 
     /**

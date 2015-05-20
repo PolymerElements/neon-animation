@@ -9,6 +9,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../polymer/polymer.html">
 
+<!--
+`Polymer.NeonAnimatableBehavior` is implemented by elements containing animations for use with
+elements implementing `Polymer.NeonAnimationRunnerBehavior`.
+@polymerBehavior
+-->
+
 <script>
 
   Polymer.NeonAnimatableBehavior = {
@@ -16,7 +22,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     properties: {
 
       /**
-       * Convenience property for setting an 'entry' animation. Do not set _animationConfig.entry
+       * Animation configuration. See README for more info.
+       */
+      animationConfig: {
+        type: Object
+      },
+
+      /**
+       * Convenience property for setting an 'entry' animation. Do not set `animationConfig.entry`
        * manually if using this. The animated node is set to `this` if using this property.
        */
       entryAnimation: {
@@ -25,7 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       /**
-       * Convenience property for setting an 'exit' animation. Do not set _animationConfig.exit
+       * Convenience property for setting an 'exit' animation. Do not set `animationConfig.exit`
        * manually if using this. The animated node is set to `this` if using this property.
        */
       exitAnimation: {
@@ -36,16 +49,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _entryAnimationChanged: function() {
-      this._animationConfig = this._animationConfig || {};
-      this._animationConfig['entry'] = [{
+      this.animationConfig = this.animationConfig || {};
+      this.animationConfig['entry'] = [{
         name: this.entryAnimation,
         node: this
       }];
     },
 
     _exitAnimationChanged: function() {
-      this._animationConfig = this._animationConfig || {};
-      this._animationConfig['exit'] = [{
+      this.animationConfig = this.animationConfig || {};
+      this.animationConfig['exit'] = [{
         name: this.exitAnimation,
         node: this
       }];
@@ -67,16 +80,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _getAnimationConfigRecursive: function(type, map, allConfigs) {
-      if (!this._animationConfig) {
+      if (!this.animationConfig) {
         return;
       }
 
       // type is optional
       var thisConfig;
       if (type) {
-        thisConfig = this._animationConfig[type];
+        thisConfig = this.animationConfig[type];
       } else {
-        thisConfig = this._animationConfig;
+        thisConfig = this.animationConfig;
       }
 
       if (!Array.isArray(thisConfig)) {
@@ -113,7 +126,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     /**
      * An element implementing `Polymer.NeonAnimationRunnerBehavior` calls this method to configure
      * an animation with an optional type. Elements implementing `Polymer.NeonAnimatableBehavior`
-     * should define the private property `_animationConfig`, which is either a configuration object
+     * should define the property `animationConfig`, which is either a configuration object
      * or a map of animation type to array of configuration objects.
      */
     getAnimationConfig: function(type) {

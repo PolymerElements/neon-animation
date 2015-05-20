@@ -12,6 +12,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="neon-animation-behavior.html">
 
 <!--
+Use `Polymer.NeonSharedElementAnimationBehavior` to implement shared element animations.
+@polymerBehavior
 -->
 
 <script>
@@ -20,12 +22,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     properties: {
 
+      /**
+       * Cached copy of shared elements.
+       */
       sharedElements: {
         type: Object
       }
 
     },
 
+    /**
+     * Finds shared elements based on `config`.
+     */
     findSharedElements: function(config) {
       var fromPage = config.fromPage;
       var toPage = config.toPage;

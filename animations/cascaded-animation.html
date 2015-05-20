@@ -13,6 +13,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../web-animations.html">
 
 <!--
+`<cascaded-animation>` applies an animation on an array of elements with a delay between each.
+the delay defaults to 50ms.
+
+Configuration:
+```
+{
+  name: 'cascaded-animation',
+  animation: <animation-name>,
+  nodes: <array-of-nodes>,
+  nodedelay: <node-delay-in-ms>,
+  timing: <animation-timing>
+}
+```
 -->
 
 <script>

@@ -13,6 +13,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="neon-animation-runner-behavior.html">
 <link rel="import" href="animations/opaque-animation.html">
 
+<!--
+`neon-animated-pages` manages a set of pages and runs an animation when switching between them. Its
+children pages should implement `Polymer.NeonAnimatableBehavior` and define `entry` and `exit`
+animations to be run when switching to or switching out of the page.
+-->
+
 <dom-module id="neon-animated-pages">
 
   <style>
@@ -97,26 +103,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       oldPage.classList.add('neon-animating');
 
       // configure the animation
-      this._animationConfig = [{
+      this.animationConfig = [{
         name: 'opaque-animation',
         node: selectedPage
       }];
 
       if (selectedPage.getAnimationConfig) {
-        this._animationConfig.push({
+        this.animationConfig.push({
           animatable: selectedPage,
           type: 'entry'
         });
       }
 
       if (oldPage.getAnimationConfig) {
-        this._animationConfig.push({
+        this.animationConfig.push({
           animatable: oldPage,
           type: 'exit'
         });
       }
 
-      if (this._animationConfig.length > 1) {
+      if (this.animationConfig.length > 1) {
         this.playAnimation();
       } else {
         this._onNeonAnimationFinish();
@@ -124,13 +130,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _onNeonAnimationFinish: function() {
-      if (!this._animationConfig) {
+      if (!this.animationConfig) {
         return;
       }
 
       var selectedPage;
       var oldPage;
-      for (var config, index = 0; config = this._animationConfig[index]; index++) {
+      for (var config, index = 0; config = this.animationConfig[index]; index++) {
         if (config.type === 'entry') {
           selectedPage = config.animatable;
         }

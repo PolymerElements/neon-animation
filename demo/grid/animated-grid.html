@@ -112,7 +112,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       },
 
-      _animationConfig: {
+      animationConfig: {
         type: Object,
         value: function() {
           return {
@@ -150,7 +150,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         'hero': target,
         'ripple': target
       };
-      this._animationConfig['exit'][0].gesture = {
+      this.animationConfig['exit'][0].gesture = {
         x: event.x,
         y: event.y
       };
