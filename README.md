@@ -65,7 +65,6 @@ An element might run different animations, for example it might do something dif
 Polymer({
   is: 'my-dialog',
   behaviors: [
-    Polymer.NeonAnimatableBehavior,
     Polymer.NeonAnimationRunnerBehavior
   ],
   properties: {
@@ -187,7 +186,9 @@ animationConfig: {
 <a name="page-transitions"></a>
 ## Page transitions
 
-The `neon-animated-pages` element manages a set of pages to switch between, and runs animations between the page transitions. It implements the `Polymer.IronSelectableBehavior` behavior. Each child node should implement `Polymer.IronAnimatableBehavior` and define the `entry` and `exit` animations. During a page transition, the `entry` animation is run on the new page and the `exit` animation is run on the old page.
+*The artist formerly known as `<core-animated-pages>`*
+
+The `neon-animated-pages` element manages a set of pages to switch between, and runs animations between the page transitions. It implements the `Polymer.IronSelectableBehavior` behavior. Each child node should implement `Polymer.NeonAnimatableBehavior` and define the `entry` and `exit` animations. During a page transition, the `entry` animation is run on the new page and the `exit` animation is run on the old page.
 
 <a name="shared-element"></a>
 ### Shared element animations
