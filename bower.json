@@ -21,7 +21,7 @@
   "homepage": "https://github.com/PolymerElements/neon-animation",
   "ignore": [],
   "dependencies": {
-    "polymer": "Polymer/polymer#v0.9.0-rc.1",
+    "polymer": "Polymer/polymer#^0.9.0",
     "iron-meta": "PolymerElements/iron-meta#^0.9.0",
     "iron-resizable-behavior": "PolymerElements/iron-resizable-behavior#^0.9.0",
     "iron-selector": "PolymerElements/iron-selector#^0.9.0",
@@ -30,11 +30,11 @@
   "devDependencies": {
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^0.9.0",
     "paper-styles": "PolymerElements/paper-styles#^0.9.0",
-    "paper-toolbar": "PolymerElements/paper-toolbar#~0.9.0",
+    "paper-toolbar": "PolymerElements/paper-toolbar#^0.9.0",
     "iron-component-page": "PolymerElements/iron-component-page#^0.9.0",
     "test-fixture": "PolymerElements/test-fixture#^0.9.0",
     "web-component-tester": "*",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.6.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
     "paper-item": "PolymerElements/paper-item#^0.9.0",
     "iron-icon": "PolymerElements/iron-icon#^0.9.0",
     "iron-icons": "PolymerElements/iron-icons#^0.9.0",
