@@ -70,7 +70,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     /**
      * Plays an animation with an optional `type`.
      */
-    playAnimation: function(type) {
+    playAnimation: function(type, cookie) {
       var allConfigs = this.getAnimationConfig(type);
       if (!allConfigs) {
         return;
@@ -90,11 +90,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this._player = null;
           }
 
-          this.fire('neon-animation-finish', null, {bubbles: false});
+          this.fire('neon-animation-finish', cookie, {bubbles: false});
         }.bind(this);
 
       } else {
-        this.fire('neon-animation-finish', null, {bubbles: false});
+        this.fire('neon-animation-finish', cookie, {bubbles: false});
       }
     },
 

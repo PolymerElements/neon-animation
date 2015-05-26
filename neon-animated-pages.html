@@ -125,7 +125,10 @@ animations to be run when switching to or switching out of the page.
       }
 
       if (this.animationConfig.length > 1) {
-        this.playAnimation();
+        this.playAnimation(null, {
+          fromPage: oldPage,
+          toPage: selectedPage
+        });
       } else {
         this._completeSelectedChanged(oldPage, selectedPage);
       }
