@@ -55,7 +55,7 @@ animations to be run when switching to or switching out of the page.
   Polymer({
 
     is: 'neon-animated-pages',
-    
+
     behaviors: [
       Polymer.IronResizableBehavior,
       Polymer.IronSelectableBehavior,
@@ -67,19 +67,11 @@ animations to be run when switching to or switching out of the page.
       activateEvent: {
         value: ''
       },
-      
-      /**
-       * If true, the initial page selection will also be animated according to its animation config
-       *
-       * @attribute animate-first-selected
-       * @type boolean
-       * @default false
-       */
-      animateFirstSelected: {
-        type: Boolean,
-        value: false
+
+      _prevSelected: {
+        type: String
       }
-      
+
     },
 
     observers: [
@@ -89,64 +81,54 @@ animations to be run when switching to or switching out of the page.
     listeners: {
       'neon-animation-finish': '_onNeonAnimationFinish'
     },
-    
-    _selectedChanged: function () {
-      
-      var selectedPage = this.selectedItem;
-      var oldPage = this._prevSelected || false;
-      this._prevSelected = selectedPage;
-      
-      // on initial load and if animateFirstSelected is negated, simply display selectedPage
-      if (!oldPage && !this.animateFirstSelected) {
+
+    _selectedChanged: function(selected) {
+      var selectedPage = this.items[this.selected];
+      var oldPage = this.items[this._prevSelected];
+
+      this._prevSelected = this.selected;
+
+      if (!oldPage) {
         this._completeSelectedChanged();
         return;
       }
-      
-      // insert safari fix
+
+      // cancel the currently running animation if one is ongoing.
+      if (oldPage.classList.contains('neon-animating')) {
+        this._squelchNextFinishEvent = true;
+        this.cancelAnimation();
+        this._completeSelectedChanged();
+      }
+
+      selectedPage.classList.add('neon-animating');
+      // display the oldPage during the transition.
+      oldPage.classList.add('neon-animating');
+
+      // configure the animation
       this.animationConfig = [{
         name: 'opaque-animation',
         node: selectedPage
       }];
 
-      // configure selectedPage animations
       if (selectedPage.getAnimationConfig) {
         this.animationConfig.push({
           animatable: selectedPage,
           type: 'entry'
         });
-      }      
-      
-      // configure oldPage animations iff exists
-      if (oldPage) {
-        
-        // cancel the currently running animation if one is ongoing.
-        if (oldPage.classList.contains('neon-animating')) {
-          this._squelchNextFinishEvent = true;
-          this.cancelAnimation();
-          this._completeSelectedChanged();
-        }
-        
-        if (oldPage.getAnimationConfig) {
-          this.animationConfig.push({
-            animatable: oldPage,
-            type: 'exit'
-          });
-        }
-        
-        // display oldPage during transition
-        oldPage.classList.add('neon-animating');
       }
 
-      selectedPage.classList.add('neon-animating');
-      
+      if (oldPage.getAnimationConfig) {
+        this.animationConfig.push({
+          animatable: oldPage,
+          type: 'exit'
+        });
+      }
+
       if (this.animationConfig.length > 1) {
-        //this.playAnimation();
-        // in the event of first load, we want to run animations only after current microtasks are complete (ie element attached)
-        this.async(this.playAnimation);
+        this.playAnimation();
       } else {
         this._completeSelectedChanged(oldPage, selectedPage);
       }
-      
     },
 
     _completeSelectedChanged: function(oldPage, selectedPage) {
