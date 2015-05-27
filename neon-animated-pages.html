@@ -83,10 +83,10 @@ animations to be run when switching to or switching out of the page.
     },
 
     _selectedChanged: function(selected) {
-      var selectedPage = this.items[this.selected];
-      var oldPage = this.items[this._prevSelected];
 
-      this._prevSelected = this.selected;
+      var selectedPage = this.selectedItem;
+      var oldPage = this._prevSelected || false;
+      this._prevSelected = selectedPage;
 
       if (!oldPage) {
         this._completeSelectedChanged();
