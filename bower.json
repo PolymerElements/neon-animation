@@ -17,6 +17,7 @@
     "neon-shared-element-animatable-behavior.html",
     "neon-shared-element-animation-behavior.html",
     "neon-animated-pages.html",
+    "neon-animatable.html",
     "neon-animations.html"
   ],
   "private": true,
