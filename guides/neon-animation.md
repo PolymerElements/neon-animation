@@ -1,3 +1,11 @@
+---
+title: neon-animation
+summary: "A short guide to neon-animation and neon-animated-pages"
+tags: ['animation','core-animated-pages']
+elements: ['neon-animation','neon-animated-pages']
+updated: 2015-05-26
+---
+
 # neon-animation
 
 `neon-animation` is a suite of elements and behaviors to implement pluggable animated transitions for Polymer Elements using [Web Animations](https://w3c.github.io/web-animations/).
@@ -282,6 +290,7 @@ Single element animations:
  * `slide-right-animation` Animates transform from `none` to `translateX(100%)`;
  * `slide-from-left-animation` Animates transform from `translateX(-100%)` to `none`;
  * `slide-from-right-animation` Animates transform from `translateX(100%)` to `none`;
+
  * `transform-animation` Animates a custom transform.
 
 Note that there is a restriction that only one transform animation can be applied on the same element at a time. Use the custom `transform-animation` to combine transform properties.
