@@ -66,10 +66,13 @@ Use `Polymer.NeonAnimationBehavior` to implement an animation.
      */
     setPrefixedProperty: function(node, property, value) {
       var map = {
-        'transform': 'webkitTransform',
-        'transformOrigin': 'webkitTransformOrigin'
+        'transform': ['webkitTransform'],
+        'transformOrigin': ['mozTransformOrigin', 'webkitTransformOrigin']
       };
-      node.style[map[property]] = value;
+      var prefixes = map[property];
+      for (var prefix, index = 0; prefix = prefixes[index]; index++) {
+        node.style[prefix] = value;
+      }
       node.style[property] = value;
     },
 

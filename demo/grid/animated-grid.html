@@ -151,8 +151,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         'ripple': target
       };
       this.animationConfig['exit'][0].gesture = {
-        x: event.x,
-        y: event.y
+        x: event.x || event.pageX,
+        y: event.y || event.pageY
       };
 
       this.fire('tile-click', {
