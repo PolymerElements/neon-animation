@@ -8,6 +8,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="animations/opaque-animation.html">
 
 <script>
 
@@ -50,10 +51,21 @@ elements implementing `Polymer.NeonAnimationRunnerBehavior`.
 
     _entryAnimationChanged: function() {
       this.animationConfig = this.animationConfig || {};
-      this.animationConfig['entry'] = [{
-        name: this.entryAnimation,
-        node: this
-      }];
+      if (this.entryAnimation !== 'fade-in-animation') {
+        // insert polyfill hack
+        this.animationConfig['entry'] = [{
+          name: 'opaque-animation',
+          node: this
+        }, {
+          name: this.entryAnimation,
+          node: this
+        }];
+      } else {
+        this.animationConfig['entry'] = [{
+          name: this.entryAnimation,
+          node: this
+        }];
+      }
     },
 
     _exitAnimationChanged: function() {
