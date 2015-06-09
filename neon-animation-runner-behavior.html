@@ -57,7 +57,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _runAnimationEffects: function(allEffects) {
-      return player = document.timeline.play(new GroupEffect(allEffects));
+      return document.timeline.play(new GroupEffect(allEffects));
     },
 
     _completeAnimations: function(allAnimations) {
