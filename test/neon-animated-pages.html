@@ -21,10 +21,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="../../web-component-tester/browser.js"></script>
   <script src="../../test-fixture/test-fixture-mocha.js"></script>
 
-  <script src="../../iron-test-helpers/test-helpers.js"></script>
-
   <link rel="import" href="../../test-fixture/test-fixture.html">
   <link rel="import" href="../neon-animated-pages.html">
+  <link rel="import" href="test-resizable-pages.html">
 
 </head>
 <body>
@@ -36,8 +35,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
+  <test-fixture id="notify-resize">
+    <template>
+      <neon-animated-pages>
+        <a-resizable-page></a-resizable-page>
+        <b-resizable-page></b-resizable-page>
+        <c-resizable-page></c-resizable-page>
+      </neon-animated-pages>
+    </template>
+  </test-fixture>
+
   <script>
     suite('basic', function() {
+    });
+    suite('notify-resize', function() {
+      test('only a destination page recieves a resize event', function(done) {
+        var animatedPages = fixture('notify-resize');
+        var resizables = Polymer.dom(animatedPages).children;
+        var recieves = {};
+        resizables.forEach(function(page) {
+          page.addEventListener('iron-resize', function(event) {
+            var pageName = event.currentTarget.tagName;
+            recieves[pageName] = pageName in recieves ? recieves[pageName] + 1 : 1;
+          });
+        });
+        animatedPages.selected = 2;
+        setTimeout(function() {
+          assert.deepEqual(recieves, {
+            'C-RESIZABLE-PAGE': 1
+          });
+          done();
+        }, 50);
+      });
     });
   </script>
 
