@@ -195,7 +195,7 @@ animations to be run when switching to or switching out of the page.
           node.classList && node.classList.remove('neon-animating');
         }
       }
-      this.async(this.notifyResize);
+      this.async(this._notifyPageResize);
     },
 
     _onNeonAnimationFinish: function(event) {
@@ -204,6 +204,14 @@ animations to be run when switching to or switching out of the page.
         return;
       }
       this._completeSelectedChanged(event.detail.fromPage, event.detail.toPage);
+    },
+
+    _notifyPageResize: function() {
+      var selectedPage = this.selectedItem;
+      this.resizerShouldNotify = function(element) {
+        return element == selectedPage;
+      }
+      this.notifyResize();
     }
 
   })
