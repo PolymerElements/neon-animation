@@ -28,6 +28,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 </dom-module>
 
+<dom-module id="resizable-element">
+  <template>
+  </template>
+</dom-module>
+
+<dom-module id="x-non-resizable-page">
+  <template>
+    <resizable-element id="resizable"></resizable-element>
+  </template>
+</dom-module>
+
 <script>
 (function() {
 
@@ -52,6 +63,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     behaviors: [
       Polymer.NeonSharedElementAnimatableBehavior,
       Polymer.IronResizableBehavior
+    ]
+  });
+
+  Polymer({
+    is: 'resizable-element',
+    behaviors: [
+      Polymer.IronResizableBehavior
+    ]
+  });
+
+  Polymer({
+    is: 'x-non-resizable-page',
+    behaviors: [
+      Polymer.NeonSharedElementAnimatableBehavior
     ]
   });
 
