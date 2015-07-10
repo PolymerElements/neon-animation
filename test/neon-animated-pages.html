@@ -37,11 +37,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <test-fixture id="notify-resize">
     <template>
-      <neon-animated-pages>
-        <a-resizable-page></a-resizable-page>
-        <b-resizable-page></b-resizable-page>
-        <c-resizable-page></c-resizable-page>
-        <x-non-resizable-page></x-non-resizable-page>
+      <neon-animated-pages attr-for-selected="name">
+        <a-resizable-page name="a"></a-resizable-page>
+        <b-resizable-page name="b"></b-resizable-page>
+        <c-resizable-page name="c"></c-resizable-page>
+        <x-non-resizable-page name="x"></x-non-resizable-page>
       </neon-animated-pages>
     </template>
   </test-fixture>
@@ -62,7 +62,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             recieves[pageName] = pageName in recieves ? recieves[pageName] + 1 : 1;
           });
         });
-        animatedPages.selected = 2;
+        animatedPages.selected = 'c';
         setTimeout(function() {
           assert.deepEqual(recieves, {
             'C-RESIZABLE-PAGE': 1
@@ -77,7 +77,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         pageX.$.resizable.addEventListener('iron-resize', function() {
           done();
         });
-        animatedPages.selected = 3;
+        animatedPages.selected = 'x';
       });
     });
   </script>
