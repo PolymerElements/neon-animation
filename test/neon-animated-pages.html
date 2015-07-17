@@ -58,14 +58,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var recieves = {};
         children.forEach(function(page) {
           page.addEventListener('iron-resize', function(event) {
-            var pageName = event.currentTarget.tagName;
+            var pageName = event.currentTarget.is;
             recieves[pageName] = pageName in recieves ? recieves[pageName] + 1 : 1;
           });
         });
         animatedPages.selected = 'c';
         setTimeout(function() {
           assert.deepEqual(recieves, {
-            'C-RESIZABLE-PAGE': 1
+            'c-resizable-page': 1
           });
           done();
         }, 50);
