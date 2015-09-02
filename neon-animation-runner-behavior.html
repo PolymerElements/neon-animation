@@ -69,6 +69,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     /**
+     * Set animation keyframe properties to the effect target.
+     * @param {Object=} animation
+     * @param {Object=} keyframe
+     */
+    _persistAnimationKeyframe: function(animation, keyframe) {
+      if (!animation.config.noPersist) {
+        for (var property in keyframe) {
+          animation.animation.setPrefixedProperty(
+            animation.effect.target,
+            property,
+            keyframe[property]
+          );
+        }
+      }
+    },
+
+    /**
+     * Persist Last keyframe animations state
+     * @param {Array=} animations
+     */
+    _persistAnimationsLastKeyframe: function(animations) {
+      for (var i = 0; i < animations.length; i++) {
+        this._persistAnimationKeyframe(
+          animations[i],
+          animations[i].effect._keyframes.slice(-1)[0]
+        );
+      }
+    },
+
+    /**
      * Plays an animation with an optional `type`.
      * @param {string=} type
      * @param {!Object=} cookie
@@ -93,6 +123,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this._player = null;
           }
 
+          this._persistAnimationsLastKeyframe(allAnimations);
           this.fire('neon-animation-finish', cookie, {bubbles: false});
         }.bind(this);
 
