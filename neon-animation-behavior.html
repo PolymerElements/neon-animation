@@ -61,7 +61,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     /**
-     * Sets `transform` and `transformOrigin` properties along with the prefixed versions.
+     * Sets properties along with the prefixed versions if applicable.
      */
     setPrefixedProperty: function(node, property, value) {
       var map = {
@@ -69,8 +69,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         'transformOrigin': ['mozTransformOrigin', 'webkitTransformOrigin']
       };
       var prefixes = map[property];
-      for (var prefix, index = 0; prefix = prefixes[index]; index++) {
-        node.style[prefix] = value;
+      if (prefixes) {
+        for (var prefix, index = 0; prefix = prefixes[index]; index++) {
+          node.style[prefix] = value;
+        }
       }
       node.style[property] = value;
     },
