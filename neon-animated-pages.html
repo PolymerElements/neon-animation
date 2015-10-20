@@ -82,6 +82,16 @@ animations to be run when switching to or switching out of the page.
       animateInitialSelection: {
         type: Boolean,
         value: false
+      },
+
+      childEntryAnimation: {
+        type: String,
+        value: 'entry'
+      },
+
+      childExitAnimation: {
+        type: String,
+        value: 'exit'
       }
 
     },
@@ -122,7 +132,7 @@ animations to be run when switching to or switching out of the page.
         if (selectedPage.getAnimationConfig) {
           this.animationConfig.push({
             animatable: selectedPage,
-            type: 'entry'
+            type: this.childEntryAnimation
           });
         }
       }
@@ -148,7 +158,7 @@ animations to be run when switching to or switching out of the page.
           if (oldPage.getAnimationConfig) {
             this.animationConfig.push({
               animatable: oldPage,
-              type: 'exit'
+              type: this.childExitAnimation
             });
           }
         }
