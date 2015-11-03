@@ -215,12 +215,34 @@ animations to be run when switching to or switching out of the page.
     _notifyPageResize: function() {
       var selectedPage = this.selectedItem;
       this.resizerShouldNotify = function(element) {
-        return element == selectedPage;
+        return element == selectedPage || isDescendant(selectedPage, element, this);
       }
       this.notifyResize();
     }
 
-  })
+  });
+
+  function isDescendant(parent, child, root) {
+    var node = getParent(child);
+    while (node != null && node != root) {
+      if (node == parent) {
+        return true;
+      }
+      node = getParent(node);
+    }
+    return false;
+  }
+
+  function getParent(node) {
+    var parent = null;
+    if (node) {
+      parent = Polymer.dom(node).parentNode;
+      if (parent && parent.host) {
+        parent = parent.host;
+      }
+    }
+    return parent;
+  }
 
 })();
 </script>

@@ -37,10 +37,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <test-fixture id="notify-resize">
     <template>
-      <neon-animated-pages>
-        <a-resizable-page></a-resizable-page>
-        <b-resizable-page></b-resizable-page>
-        <c-resizable-page></c-resizable-page>
+      <neon-animated-pages attr-for-selected="name">
+        <a-resizable-page name="a"></a-resizable-page>
+        <b-resizable-page name="b"></b-resizable-page>
+        <c-resizable-page name="c"></c-resizable-page>
+        <x-non-resizable-page name="x"></x-non-resizable-page>
       </neon-animated-pages>
     </template>
   </test-fixture>
@@ -48,24 +49,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     suite('basic', function() {
     });
+
     suite('notify-resize', function() {
+
       test('only a destination page recieves a resize event', function(done) {
         var animatedPages = fixture('notify-resize');
-        var resizables = Polymer.dom(animatedPages).children;
+        var children = Polymer.dom(animatedPages).children;
         var recieves = {};
-        resizables.forEach(function(page) {
+        children.forEach(function(page) {
           page.addEventListener('iron-resize', function(event) {
-            var pageName = event.currentTarget.tagName;
+            var pageName = event.currentTarget.is;
             recieves[pageName] = pageName in recieves ? recieves[pageName] + 1 : 1;
           });
         });
-        animatedPages.selected = 2;
+        animatedPages.selected = 'c';
         setTimeout(function() {
           assert.deepEqual(recieves, {
-            'C-RESIZABLE-PAGE': 1
+            'c-resizable-page': 1
           });
           done();
         }, 50);
+      });
+
+      test('resize notification can be derivered to a non-resizable page', function(done) {
+        var animatedPages = fixture('notify-resize');
+        var pageX = Polymer.dom(animatedPages).querySelector('x-non-resizable-page');
+        pageX.$.resizable.addEventListener('iron-resize', function() {
+          done();
+        });
+        animatedPages.selected = 'x';
       });
     });
   </script>
