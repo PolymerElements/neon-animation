@@ -58,20 +58,20 @@ Configuration:
         translateX = (toRect.left + (toRect.width / 2)) - (fromRect.left + (fromRect.width / 2));
         translateY = (toRect.top + (toRect.height / 2)) - (fromRect.top + (fromRect.height / 2));
       }
-      var translate = 'translate(' + translateX + 'px,' + translateY + 'px)';
+      var translate = 'translate3d(' + translateX + 'px,' + translateY + 'px, 0)';
 
       var size = Math.max(fromRect.width + Math.abs(translateX) * 2, fromRect.height + Math.abs(translateY) * 2);
       var diameter = Math.sqrt(2 * size * size);
       var scaleX = diameter / fromRect.width;
       var scaleY = diameter / fromRect.height;
-      var scale = 'scale(' + scaleX + ',' + scaleY + ')';
+      var scale = 'scale3d(' + scaleX + ',' + scaleY + ', 1)';
 
       this.setPrefixedProperty(shared.from, 'transformOrigin', '50% 50%');
       shared.from.style.borderRadius = '50%';
 
       this._effect = new KeyframeEffect(shared.from, [
         {'transform': translate + ' ' + scale},
-        {'transform': translate + ' scale(0)'}
+        {'transform': translate + ' scale3d(0, 0, 1)'}
       ], this.timingFromConfig(config));
       return this._effect;
     },
