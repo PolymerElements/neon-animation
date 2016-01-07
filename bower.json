@@ -1,7 +1,7 @@
 {
   "name": "neon-animation",
   "description": "A system for animating Polymer-based web components",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "authors": [
     "The Polymer Authors"
   ],
