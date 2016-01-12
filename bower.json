@@ -42,7 +42,7 @@
     "paper-toolbar": "PolymerElements/paper-toolbar#^1.0.0",
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
     "test-fixture": "PolymerElements/test-fixture#^1.0.0",
-    "web-component-tester": "*",
+    "web-component-tester": "^4.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
     "paper-item": "PolymerElements/paper-item#^1.0.0",
     "iron-icon": "PolymerElements/iron-icon#^1.0.0",
