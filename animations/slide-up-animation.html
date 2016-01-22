@@ -48,7 +48,7 @@ Configuration:
 
       this._effect = new KeyframeEffect(node, [
         {'transform': 'translate(0)'},
-        {'transform': 'translateY(-100%)'}
+        {'transform': 'translate3d(0, -100%, 0)'}
       ], this.timingFromConfig(config));
 
       return this._effect;

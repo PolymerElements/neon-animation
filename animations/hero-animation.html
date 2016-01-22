@@ -62,7 +62,7 @@ Configuration:
       shared.from.style.visibility = 'hidden';
 
       this._effect = new KeyframeEffect(shared.to, [
-        {'transform': 'translate(' + deltaLeft + 'px,' + deltaTop + 'px) scale(' + deltaWidth + ',' + deltaHeight + ')'},
+        {'transform': 'translate3d(' + deltaLeft + 'px,' + deltaTop + 'px, 0) scale3d(' + deltaWidth + ',' + deltaHeight + ', 1)'},
         {'transform': 'none'}
       ], this.timingFromConfig(config));
 
