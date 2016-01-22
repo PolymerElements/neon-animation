@@ -100,6 +100,12 @@ animations to be run when switching to or switching out of the page.
       var oldPage = this._valueToItem(this._prevSelected) || false;
       this._prevSelected = selected;
 
+      // send resize notification, so that the page can adapt its size
+      this.resizerShouldNotify = function(element) {
+        return element == selectedPage;
+      }
+      this.notifyResize();
+
       // on initial load and if animateInitialSelection is negated, simply display selectedPage.
       if (!oldPage && !this.animateInitialSelection) {
         this._completeSelectedChanged();
@@ -201,7 +207,6 @@ animations to be run when switching to or switching out of the page.
           node.classList && node.classList.remove('neon-animating');
         }
       }
-      this.async(this._notifyPageResize);
     },
 
     _onNeonAnimationFinish: function(event) {
@@ -210,16 +215,7 @@ animations to be run when switching to or switching out of the page.
         return;
       }
       this._completeSelectedChanged(event.detail.fromPage, event.detail.toPage);
-    },
-
-    _notifyPageResize: function() {
-      var selectedPage = this.selectedItem;
-      this.resizerShouldNotify = function(element) {
-        return element == selectedPage;
-      }
-      this.notifyResize();
     }
-
   })
 
 })();
