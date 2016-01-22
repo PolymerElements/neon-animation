@@ -33,21 +33,15 @@ animations to be run when switching to or switching out of the page.
       position: relative;
     }
 
-    :host > ::content > * {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      height: 100%;
-    }
-
     :host > ::content > :not(.iron-selected):not(.neon-animating) {
       display: none !important;
     }
 
     :host > ::content > .neon-animating {
       pointer-events: none;
+ 	  position: absolute;
+      left: 0;
+      right: 0;  
     }
 
   </style>
@@ -99,6 +93,12 @@ animations to be run when switching to or switching out of the page.
       var selectedPage = this.selectedItem;
       var oldPage = this._valueToItem(this._prevSelected) || false;
       this._prevSelected = selected;
+
+	  if(selectedPage.clientHeight){
+          this.async((function(){
+                        this.style.height = selectedPage.clientHeight +'px';
+                        }));
+      }
 
       // on initial load and if animateInitialSelection is negated, simply display selectedPage.
       if (!oldPage && !this.animateInitialSelection) {
@@ -190,6 +190,7 @@ animations to be run when switching to or switching out of the page.
      */
     _completeSelectedChanged: function(oldPage, selectedPage) {
       if (selectedPage) {
+		this.style.height = '';
         selectedPage.classList.remove('neon-animating');
       }
       if (oldPage) {
