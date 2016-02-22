@@ -276,7 +276,7 @@ Single element animations:
  * `fade-out-animation` Animates opacity from `1` to `0`;
  * `scale-down-animation` Animates transform from `scale(1)` to `scale(0)`;
  * `scale-up-animation` Animates transform from `scale(0)` to `scale(1)`;
- * `slide-down-animation` Animates transform from `translateY(-100%)` to `none`;
+ * `slide-down-animation` Animates transform from `none` to `translateY(100%)`;
  * `slide-up-animation` Animates transform from `none` to `translateY(-100%)`;
  * `slide-from-top-animation` Animates transform from `translateY(-100%)` to `none`;
  * `slide-from-bottom-animation` Animates transform from `translateY(100%)` to `none`;
@@ -284,6 +284,7 @@ Single element animations:
  * `slide-right-animation` Animates transform from `none` to `translateX(100%)`;
  * `slide-from-left-animation` Animates transform from `translateX(-100%)` to `none`;
  * `slide-from-right-animation` Animates transform from `translateX(100%)` to `none`;
+ 
  * `transform-animation` Animates a custom transform.
 
 Note that there is a restriction that only one transform animation can be applied on the same element at a time. Use the custom `transform-animation` to combine transform properties.
