@@ -292,6 +292,7 @@ Single element animations:
  * `slide-right-animation` Animates transform from `none` to `translateX(100%)`;
  * `slide-from-left-animation` Animates transform from `translateX(-100%)` to `none`;
  * `slide-from-right-animation` Animates transform from `translateX(100%)` to `none`;
+ 
  * `transform-animation` Animates a custom transform.
 
 Note that there is a restriction that only one transform animation can be applied on the same element at a time. Use the custom `transform-animation` to combine transform properties.
