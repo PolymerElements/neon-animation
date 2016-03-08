@@ -93,6 +93,9 @@ animations to be run when switching to or switching out of the page.
     },
 
     _onIronSelect: function(event) {
+      // ignore if the event is not trigger by a page selection
+      if (Polymer.dom(event).rootTarget !== this) return;
+
       var selectedPage = event.detail.item;
       if (!selectedPage) return;
       

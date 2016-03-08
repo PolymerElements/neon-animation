@@ -1,0 +1,64 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../iron-selector/iron-selector.html">
+<link rel="import" href="../neon-animatable-behavior.html">
+<link rel="import" href="../animations/opaque-animation.html">
+
+<dom-module id="page-with-nested-selector">
+  <template>
+    <iron-selector id="selector" selected="0">
+      <div>Item 1</div>
+      <div>Item 2</div>
+      <div>Item 3</div>
+    </iron-selector>
+  </template>
+</dom-module>
+
+<script>
+(function() {
+
+  Polymer({
+    is: 'page-with-nested-selector',
+
+    behaviors: [
+      Polymer.NeonAnimatableBehavior
+    ],
+
+    properties: {
+      animationConfig: {
+        type: Object,
+        value: function() {
+          return {
+            'entry': {
+              name: 'opaque-animation',
+              node: this
+            },
+            'exit': {
+              name: 'opaque-animation',
+              node: this
+            }
+          };
+        }
+      }
+    }, 
+
+    get nestedSelector() {
+      return this.$.selector;
+    },
+
+    set nestedSelector(value) {
+      // do nothing
+    }
+  });
+
+})();
+</script>
