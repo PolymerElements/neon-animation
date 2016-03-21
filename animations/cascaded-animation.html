@@ -38,18 +38,6 @@ Configuration:
       Polymer.NeonAnimationBehavior
     ],
 
-    properties: {
-
-      /** @type {!Polymer.IronMeta} */
-      _animationMeta: {
-        type: Object,
-        value: function() {
-          return new Polymer.IronMeta({type: 'animation'});
-        }
-      }
-
-    },
-
     /**
      * @param {{
      *   animation: string,
@@ -59,13 +47,6 @@ Configuration:
      *  }} config
      */
     configure: function(config) {
-      var animationConstructor = /** @type {Function} */ (
-          this._animationMeta.byKey(config.animation));
-      if (!animationConstructor) {
-        console.warn(this.is + ':', 'constructor for', config.animation, 'not found!');
-        return;
-      }
-
       this._animations = [];
       var nodes = config.nodes;
       var effects = [];
@@ -79,11 +60,15 @@ Configuration:
         config.timing.delay += nodeDelay;
         config.node = node;
 
-        var animation = new animationConstructor();
-        var effect = animation.configure(config);
+        var animation = document.createElement(config.animation);
+        if (animation.isNeonAnimation) {
+          var effect = animation.configure(config);
 
-        this._animations.push(animation);
-        effects.push(effect);
+          this._animations.push(animation);
+          effects.push(effect);
+        } else {
+          console.warn(this.is + ':', config.animation, 'not found!');
+        }
       }
       config.timing.delay = oldDelay;
 
