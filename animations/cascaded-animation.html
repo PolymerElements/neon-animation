@@ -56,6 +56,7 @@ Configuration:
       config.timing.delay = config.timing.delay || 0;
 
       var oldDelay = config.timing.delay;
+      var abortedConfigure;
       for (var node, index = 0; node = nodes[index]; index++) {
         config.timing.delay += nodeDelay;
         config.node = node;
@@ -68,9 +69,16 @@ Configuration:
           effects.push(effect);
         } else {
           console.warn(this.is + ':', config.animation, 'not found!');
+          abortedConfigure = true;
+          break;
         }
       }
       config.timing.delay = oldDelay;
+      config.node = null;
+      // if a bad animation was configured, abort config.
+      if (abortedConfigure) {
+        return;
+      }
 
       this._effect = new GroupEffect(effects);
       return this._effect;
