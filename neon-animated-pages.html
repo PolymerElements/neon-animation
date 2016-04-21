@@ -96,12 +96,7 @@ animations to be run when switching to or switching out of the page.
       var selectedPage = event.detail.item;
 
       // Only consider child elements.
-      if (!(selectedPage instanceof Element)) return;
-      if (Polymer.dom(selectedPage).parentNode != this &&
-          Polymer.dom(selectedPage).getDestinationInsertionPoints().
-              every(function(insertionPoint) {
-                return Polymer.dom(insertionPoint).parentNode != this;
-              }.bind(this))) {
+      if (this.items.indexOf(selectedPage) < 0) {
         return;
       }
       
