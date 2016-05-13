@@ -20,15 +20,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    */
   Polymer.NeonAnimationRunnerBehaviorImpl = {
 
-    properties: {
-
-      /** @type {?Object} */
-      _player: {
-        type: Object
-      }
-
-    },
-
     _configureAnimationEffects: function(allConfigs) {
       var allAnimations = [];
       if (allConfigs.length > 0) {
@@ -72,24 +63,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (!allConfigs) {
         return;
       }
+      this._animations = this._animations || {};
       try {
+        if (this._animations[type]) {
+          this._animations[type].cancel();
+          delete this._animations[type];
+        }
         var allAnimations = this._configureAnimationEffects(allConfigs);
         var allEffects = allAnimations.map(function(animation) {
           return animation.effect;
         });
 
         if (allEffects.length > 0) {
-          this._player = this._runAnimationEffects(allEffects);
-          this._player.onfinish = function() {
+          var animation = this._runAnimationEffects(allEffects);
+          animation.onfinish = function() {
             this._completeAnimations(allAnimations);
-
-            if (this._player) {
-              this._player.cancel();
-              this._player = null;
+            if (this._animations[type]) {
+              this._animations[type].cancel();
+              this._animations[type] = null;
             }
 
             this.fire('neon-animation-finish', cookie, {bubbles: false});
           }.bind(this);
+          this._animations[type] = animation;
           return;
         }
       } catch (e) {
@@ -99,12 +95,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     /**
-     * Cancels the currently running animation.
+     * Cancels the currently running animations.
      */
     cancelAnimation: function() {
-      if (this._player) {
-        this._player.cancel();
+      for (var k in this._animations) {
+        this._animations[k].cancel();
       }
+      this._animations = {};
     }
   };
 
