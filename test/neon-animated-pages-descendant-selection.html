@@ -59,7 +59,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="test-element">
   <template>
     <neon-animated-pages entry-animation="test-animation" animate-initial-selection>
-      <content></content>
+      <slot></slot>
     </neon-animated-pages>
   </template>
 </dom-module>
@@ -103,6 +103,7 @@ suite('descendant selection', function() {
     var target = testElement.querySelector('#target');
     var animatedPages = testElement.root.querySelector("neon-animated-pages");
     animatedPages.setAttribute('selected', '1');
+    debugger;
     assert(target.animated);
   });
   test('ignores selection from shadow descendants of its items', function() {
