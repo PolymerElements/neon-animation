@@ -50,7 +50,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var animatedPages = fixture('animate-initial-selection');
         animatedPages._complete = sinon.spy(animatedPages._complete);
         assert.isUndefined(animatedPages.selected);
-        var pages = Polymer.dom(animatedPages).children;
+        var pages = animatedPages.children;
         animatedPages.addEventListener('neon-animation-finish', function(event) {
           if (animatedPages.selected === 0) {
             animatedPages.selected = 1;

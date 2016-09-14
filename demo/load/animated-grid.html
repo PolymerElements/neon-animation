@@ -132,7 +132,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     attached: function() {
       this.async(function() {
-        var nodeList = Polymer.dom(this.root).querySelectorAll('.tile');
+        var nodeList = this.root.querySelectorAll('.tile');
         this.animationConfig['entry'][0].nodes = Array.prototype.slice.call(nodeList);
       });
     },

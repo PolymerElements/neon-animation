@@ -190,7 +190,7 @@ animations to be run when switching to or switching out of the page.
         oldPage.classList.remove('neon-animating');
       }
       if (!selectedPage || !oldPage) {
-        var nodes = Polymer.dom(this.$.content).getDistributedNodes();
+        var nodes = this.$.content.getDistributedNodes();
         for (var node, index = 0; node = nodes[index]; index++) {
           node.classList && node.classList.remove('neon-animating');
         }

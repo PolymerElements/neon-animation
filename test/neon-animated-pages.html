@@ -65,7 +65,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     suite('notify-resize', function() {
       test('only a destination page recieves a resize event', function(done) {
         var animatedPages = fixture('notify-resize');
-        var resizables = Polymer.dom(animatedPages).children;
+        var resizables = animatedPages.children;
         var recieves = {};
         resizables.forEach(function(page) {
           page.addEventListener('iron-resize', function(event) {
@@ -86,7 +86,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       test('\'neon-animation-finish\' event fired after animating initial selection', function(done) {
         var animatedPages = fixture('animate-initial-selection');
         assert.isUndefined(animatedPages.selected);
-        var pages = Polymer.dom(animatedPages).children;
+        var pages = animatedPages.children;
         animatedPages.addEventListener('neon-animation-finish', function(event) {
           assert.strictEqual(animatedPages.selected, 0);
           assert.isFalse(event.detail.fromPage);
