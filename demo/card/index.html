@@ -86,7 +86,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template is="dom-bind">
       <neon-animated-pages id="pages" selected="0">
           <x-cards-list id="list">
-            <div class="card-contents">
+            <div slot="div" class="card-contents">
               <h2>Choose a subject</h2>
               <div class="button-container large">
                 <div class="blue raised button" on-click="_onPolymerClick">
@@ -100,7 +100,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </x-cards-list>
 
           <x-card>
-            <div class="card-contents">
+            <div slot="div" class="card-contents">
               <div class="raised back button" on-click="_onBackClick">
                 BACK
               </div>
@@ -117,7 +117,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </x-card>
 
           <x-card>
-            <div class="card-contents">
+            <div slot="div" class="card-contents">
               <div class="raised back button" on-click="_onBackClick">
                 BACK
               </div>
