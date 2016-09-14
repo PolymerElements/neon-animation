@@ -67,12 +67,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var animatedPages = fixture('notify-resize');
         var resizables = animatedPages.children;
         var recieves = {};
-        resizables.forEach(function(page) {
+        for (var i=0; i < resizables.length; i++) {
+          var page = resizables[i];
           page.addEventListener('iron-resize', function(event) {
             var pageName = event.currentTarget.tagName;
             recieves[pageName] = pageName in recieves ? recieves[pageName] + 1 : 1;
           });
-        });
+        }
         animatedPages.selected = 2;
         setTimeout(function() {
           assert.deepEqual(recieves, {
