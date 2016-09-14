@@ -103,7 +103,6 @@ suite('descendant selection', function() {
     var target = testElement.querySelector('#target');
     var animatedPages = testElement.root.querySelector("neon-animated-pages");
     animatedPages.setAttribute('selected', '1');
-    debugger;
     assert(target.animated);
   });
   test('ignores selection from shadow descendants of its items', function() {
