@@ -25,20 +25,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <link rel="import" href="circles-page.html">
     <link rel="import" href="squares-page.html">
 
-    <style is="custom-style">
-      body {
-        overflow: hidden;
-        @apply(--layout-fullbleed);
-      }
-      neon-animated-pages {
-        height: 100%;
-      }
+    <custom-style>
+      <style is="custom-style">
+        body {
+          overflow: hidden;
+          @apply(--layout-fullbleed);
+        }
+        neon-animated-pages {
+          height: 100%;
+        }
 
-      :root {
-        --color-one: var(--paper-cyan-300);
-        --color-two: var(--paper-orange-500);
-      }
-    </style>
+        :root {
+          --color-one: var(--paper-cyan-300);
+          --color-two: var(--paper-orange-500);
+        }
+      </style>
+    </custom-style>
 
   </head>
   <body>

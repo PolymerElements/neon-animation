@@ -107,7 +107,6 @@ suite('descendant selection', function() {
     var target = Polymer.dom(testElement).querySelector('#target');
     var animatedPages = Polymer.dom(testElement.root).querySelector("neon-animated-pages");
     Polymer.dom.flush();
-    animatedPages.forceSynchronousItemUpdate();
     Polymer.dom(animatedPages).setAttribute('selected', '1');
     assert(target.animated);
   });
