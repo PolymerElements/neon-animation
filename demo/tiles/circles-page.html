@@ -55,7 +55,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       animationConfig: {
         value: function() {
-          var circles = this.root.querySelectorAll('.circle');
+          var circles = Polymer.dom(this.root).querySelectorAll('.circle');
           var circlesArray = Array.prototype.slice.call(circles);
           return {
             'entry': [{
@@ -82,7 +82,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _onClick: function(event) {
-      var target = event.composedPath()[0];
+      var target = Polymer.dom(event).rootTarget;
+      if (!target) {
+        target = event.composedPath()[0];
+      }
       if (target.classList.contains('circle')) {
         // configure the page animation
         this.sharedElements = {
@@ -90,7 +93,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         };
 
         var nodesToScale = [];
-        var circles = this.root.querySelectorAll('.circle');
+        var circles = Polymer.dom(this.root).querySelectorAll('.circle');
         for (var node, index = 0; node = circles[index]; index++) {
           if (node !== event.target) {
             nodesToScale.push(node);
