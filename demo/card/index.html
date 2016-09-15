@@ -25,60 +25,62 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <link rel="import" href="x-card.html">
     <link rel="import" href="x-cards-list.html">
 
-    <style is="custom-style">
+    <custom-style>
+      <style is="custom-style">
 
-      body {
-        padding: 15px;
-        @apply(--layout-fullbleed);
-        @apply(--paper-font-common-base);
-      }
+        body {
+          padding: 15px;
+          @apply(--layout-fullbleed);
+          @apply(--paper-font-common-base);
+        }
 
-      neon-animated-pages {
-        height: 100%;
-      }
+        neon-animated-pages {
+          height: 100%;
+        }
 
-      .large {
-        width: 100%
-      }
+        .large {
+          width: 100%
+        }
 
-      .button {
-        text-align: center;
-        width: 120px;
-        height: 32px;
-        line-height: 32px;
-        border-radius: 2px;
-        font-size: 0.9em;
-        background-color: #fff;
-        color: #646464;
-      }
+        .button {
+          text-align: center;
+          width: 120px;
+          height: 32px;
+          line-height: 32px;
+          border-radius: 2px;
+          font-size: 0.9em;
+          background-color: #fff;
+          color: #646464;
+        }
 
-      .button.blue {
-        background-color: #4285f4;
-        color: #fff;
-      }
+        .button.blue {
+          background-color: #4285f4;
+          color: #fff;
+        }
 
-      .button.raised {
-        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-      }
+        .button.raised {
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+        }
 
-      .button.back {
-        position: fixed;
-        top: 30px;
-        left: 30px;
-      }
+        .button.back {
+          position: fixed;
+          top: 30px;
+          left: 30px;
+        }
 
-      .card-contents {
-        @apply(--layout-vertical);
-        @apply(--layout-center-center);
-        @apply(--layout-fit);
-      }
+        .card-contents {
+          @apply(--layout-vertical);
+          @apply(--layout-center-center);
+          @apply(--layout-fit);
+        }
 
-      .button-container {
-        @apply(--layout-flex);
-        @apply(--layout-horizontal);
-        @apply(--layout-around-justified);
-      }
-    </style>
+        .button-container {
+          @apply(--layout-flex);
+          @apply(--layout-horizontal);
+          @apply(--layout-around-justified);
+        }
+      </style>
+    </custom-style>
 
   </head>
   <body>

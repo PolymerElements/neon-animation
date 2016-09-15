@@ -25,55 +25,57 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <link rel="import" href="../../neon-animatable.html">
     <link rel="import" href="../../neon-animations.html">
 
-    <style is="custom-style">
-      body {
-        overflow: hidden;
-        @apply(--layout-fullbleed);
-        @apply(--layout-vertical);
-      }
+    <custom-style>
+      <style is="custom-style">
+        body {
+          overflow: hidden;
+          @apply(--layout-fullbleed);
+          @apply(--layout-vertical);
+        }
 
-      .toolbar {
-        position: relative;
+        .toolbar {
+          position: relative;
 
-        padding: 8px;
+          padding: 8px;
 
-        background-color: white;
+          background-color: white;
 
-        z-index: 12;
-      }
+          z-index: 12;
+        }
 
-      neon-animated-pages {
-        @apply(--layout-flex);
-      }
+        neon-animated-pages {
+          @apply(--layout-flex);
+        }
 
-      neon-animatable {
-        color: white;
-        @apply(--layout-horizontal);
-        @apply(--layout-center-center);
-        @apply(--paper-font-display4);
-      }
+        neon-animatable {
+          color: white;
+          @apply(--layout-horizontal);
+          @apply(--layout-center-center);
+          @apply(--paper-font-display4);
+        }
 
-      neon-animatable:nth-child(1) {
-        background: var(--paper-red-500);
-      }
+        neon-animatable:nth-child(1) {
+          background: var(--paper-red-500);
+        }
 
-      neon-animatable:nth-child(2) {
-        background: var(--paper-blue-500);
-      }
+        neon-animatable:nth-child(2) {
+          background: var(--paper-blue-500);
+        }
 
-      neon-animatable:nth-child(3) {
-        background: var(--paper-orange-500);
-      }
+        neon-animatable:nth-child(3) {
+          background: var(--paper-orange-500);
+        }
 
-      neon-animatable:nth-child(4) {
-        background: var(--paper-green-500);
-      }
+        neon-animatable:nth-child(4) {
+          background: var(--paper-green-500);
+        }
 
-      neon-animatable:nth-child(5) {
-        background: var(--paper-purple-500);
-      }
+        neon-animatable:nth-child(5) {
+          background: var(--paper-purple-500);
+        }
 
-    </style>
+      </style>
+    </custom-style>
 
   </head>
   <body>
