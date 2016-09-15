@@ -54,31 +54,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     properties: {
 
       animationConfig: {
-        value: function() {
-          var circles = Polymer.dom(this.root).querySelectorAll('.circle');
-          var circlesArray = Array.prototype.slice.call(circles);
-          return {
-            'entry': [{
-              name: 'cascaded-animation',
-              animation: 'scale-up-animation',
-              nodes: circlesArray
-            }],
-
-            'exit': [{
-              name: 'hero-animation',
-              id: 'hero',
-              fromPage: this
-            }, {
-              name: 'cascaded-animation',
-              animation: 'scale-down-animation'
-            }]
-          };
-        }
+        type: Object
       }
     },
 
     listeners: {
       'click': '_onClick'
+    },
+
+    attached: function() {
+      var circles = Polymer.dom(this.root).querySelectorAll('.circle');
+      var circlesArray = Array.prototype.slice.call(circles);
+      this.animationConfig = {
+        'entry': [{
+          name: 'cascaded-animation',
+          animation: 'scale-up-animation',
+          nodes: circlesArray
+        }],
+
+        'exit': [{
+          name: 'hero-animation',
+          id: 'hero',
+          fromPage: this
+        }, {
+          name: 'cascaded-animation',
+          animation: 'scale-down-animation'
+        }]
+      };
     },
 
     _onClick: function(event) {
