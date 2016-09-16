@@ -97,11 +97,11 @@ animations to be run when switching to or switching out of the page.
       var content = this.$$('content');
       
       // removes the id of the value based on using v1 or v0. (dual mode support)
-      if (slot.assignedNodes) {
+      if (!Polymer.version || Polymer.version >= '2') {
         Polymer.dom(content).parentNode.removeChild(content);
         this.$.content = slot;
       } else {
-        Polymer.dom(slot).parentNode.removeChild(slot);
+        Polymer.dom(slot).id = '';
         this.$.content = content;
       }
     },
