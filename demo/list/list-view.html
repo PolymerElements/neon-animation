@@ -21,12 +21,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style>
       :host {
-        @apply(--layout-vertical);
+        @apply --layout-vertical;
       }
 
       .main {
-        @apply(--layout-flex);
-        @apply(--layout-scroll);
+        @apply --layout-flex;
+        @apply --layout-scroll;
       }
 
       iron-icon {
@@ -81,26 +81,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       animationConfig: {
-        type: Object,
-        value: function() {
-          return {
-            'entry': [{
-              name: 'fade-in-animation',
-              node: this.$.button
-            }],
-
-            'exit': [{
-              name: 'fade-out-animation',
-              node: this.$.button
-            }, {
-              name: 'hero-animation',
-              id: 'hero',
-              fromPage: this
-            }]
-          };
-        }
+        type: Object
       }
+    },
 
+    ready: function() {
+      this.animationConfig = {
+        'entry': [{
+          name: 'fade-in-animation',
+          node: this.$.button
+        }],
+
+        'exit': [{
+          name: 'fade-out-animation',
+          node: this.$.button
+        }, {
+          name: 'hero-animation',
+          id: 'hero',
+          fromPage: this
+        }]
+      };
     },
 
     _onClick: function(event) {
