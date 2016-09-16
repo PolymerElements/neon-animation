@@ -18,6 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
 
+    <link rel="import" href="../../web-animations.html">
     <link rel="import" href="../../../iron-flex-layout/iron-flex-layout.html">
     <link rel="import" href="../../neon-animated-pages.html">
     <link rel="import" href="../../neon-animations.html">
@@ -30,8 +31,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         body {
           padding: 15px;
-          @apply(--layout-fullbleed);
-          @apply(--paper-font-common-base);
+          @apply --layout-fullbleed;
+          @apply --paper-font-common-base;
         }
 
         neon-animated-pages {
@@ -69,13 +70,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         .card-contents {
-          @apply(--layout-vertical);
-          @apply(--layout-center-center);
-          @apply(--layout-fit);
+          @apply --layout-vertical;
+          @apply --layout-center-center;
+          @apply --layout-fit;
         }
 
         .button-container {
-          @apply(--layout-flex);
+          @apply --layout-flex;
           @apply(--layout-horizontal);
           @apply(--layout-around-justified);
         }
@@ -84,65 +85,67 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   </head>
   <body>
-
-    <template is="dom-bind">
-      <neon-animated-pages id="pages" selected="0">
-          <x-cards-list id="list">
-            <div slot="div" class="card-contents">
-              <h2>Choose a subject</h2>
-              <div class="button-container large">
-                <div class="blue raised button" on-click="_onPolymerClick">
-                  POLYMER
+    <dom-bind>
+      <template is="dom-bind">
+        <neon-animated-pages id="pages" selected="0">
+            <x-cards-list id="list">
+              <div slot="div" class="card-contents">
+                <h2>Choose a subject</h2>
+                <div class="button-container large">
+                  <div class="blue raised button" on-click="_onPolymerClick">
+                    POLYMER
+                  </div>
+                  <div class="blue raised button" on-click="_onAngularClick">
+                    ANGULAR
+                  </div>
                 </div>
-                <div class="blue raised button" on-click="_onAngularClick">
-                  ANGULAR
+              </div>
+            </x-cards-list>
+
+            <x-card>
+              <div slot="div" class="card-contents">
+                <div class="raised back button" on-click="_onBackClick">
+                  BACK
                 </div>
+                <h2>Polymer</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
               </div>
-            </div>
-          </x-cards-list>
+            </x-card>
 
-          <x-card>
-            <div slot="div" class="card-contents">
-              <div class="raised back button" on-click="_onBackClick">
-                BACK
+            <x-card>
+              <div slot="div" class="card-contents">
+                <div class="raised back button" on-click="_onBackClick">
+                  BACK
+                </div>
+                <h2>Angular</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
               </div>
-              <h2>Polymer</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </div>
-          </x-card>
+            </x-card>
 
-          <x-card>
-            <div slot="div" class="card-contents">
-              <div class="raised back button" on-click="_onBackClick">
-                BACK
-              </div>
-              <h2>Angular</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </div>
-          </x-card>
-
-        </neon-animated-pages>
-    </template>
+          </neon-animated-pages>
+      </template>
+    </dom-bind>
 
     <script>
 
-      var scope = document.querySelector('template[is="dom-bind"]');
+      var scope1 = document.querySelector('template[is="dom-bind"]');
+      var scope2 = document.querySelector('dom-bind');
 
-      scope._onPolymerClick = function(event) {
+      scope1._onPolymerClick = function(event) {
         this.$.list.sharedElements = {
           'ripple': event.target,
           'reverse-ripple': event.target
@@ -150,7 +153,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.pages.selected = 1;
       };
 
-      scope._onAngularClick = function(event) {
+      scope1._onAngularClick = function(event) {
         this.$.list.sharedElements = {
           'ripple': event.target,
           'reverse-ripple': event.target
@@ -158,9 +161,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.pages.selected = 2;
       };
 
-      scope._onBackClick = function(event) {
+      scope1._onBackClick = function(event) {
         this.$.pages.selected = 0;
       };
+
+      scope2._onPolymerClick = scope1._onPolymerClick;
+      scope2._onAngularClick = scope1._onAngularClick;
+      scope2._onBackClick = scope1._onBackClick;
 
     </script>
 
