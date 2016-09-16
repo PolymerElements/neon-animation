@@ -16,14 +16,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style>
       :host {
-        @apply(--layout-vertical);
+        @apply --layout-vertical;
       }
 
       .main {
         background: white;
-        @apply(--layout-flex);
-        @apply(--layout-scroll);
-        @apply(--shadow-elevation-8dp);
+        @apply --layout-flex;
+        @apply --layout-scroll;
+        @apply --shadow-elevation-8dp;
       }
 
       .image-container {
@@ -72,41 +72,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     properties: {
 
       sharedElements: {
-        type: Object,
-        value: function() {
-          return {
-            'hero': this.$.main
-          };
-        }
+        type: Object
       },
 
       animationConfig: {
-        type: Object,
-        value: function() {
-          return {
-            'entry': [{
-              name: 'fade-in-animation',
-              node: this.$.button
-            }, {
-              name: 'hero-animation',
-              id: 'hero',
-              toPage: this
-            }],
-
-            'exit': [{
-              name: 'fade-out-animation',
-              node: this.$.button
-            }, {
-              name: 'scale-down-animation',
-              node: this.$.main,
-              transformOrigin: '50% 50%',
-              axis: 'y'
-            }]
-
-          }
-        }
+        type: Object
       }
+    },
 
+    ready: function() {
+      this.sharedElements = { 'hero': this.$.main };
+      this.animationConfig = {
+          'entry': [{
+            name: 'fade-in-animation',
+            node: this.$.button
+          }, {
+            name: 'hero-animation',
+            id: 'hero',
+            toPage: this
+          }],
+
+          'exit': [{
+            name: 'fade-out-animation',
+            node: this.$.button
+          }, {
+            name: 'scale-down-animation',
+            node: this.$.main,
+            transformOrigin: '50% 50%',
+            axis: 'y'
+          }]
+        }
     },
 
     _onClearButtonClick: function() {
