@@ -30,8 +30,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <style is="custom-style">
         body {
           overflow: hidden;
-          @apply --layout-fullbleed;
-          @apply --layout-vertical;
+          height: 100vh;
+          margin: 0px;
+        }
+
+        dom-bind {
+          height: 100%;
         }
 
         .toolbar {
@@ -45,6 +49,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         neon-animated-pages {
+          height: 100%;
           @apply --layout-flex;
         }
 
@@ -54,8 +59,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           @apply --layout-center-center;
           @apply --paper-font-display4;
         }
-
-        neon-animatable:nth-child(1) {
+        
+        /* in shady polymer1 slot element is first child */
+        neon-animatable:nth-child(1),
+        neon-animatable:nth-child(6) {
           background: var(--paper-red-500);
         }
 
@@ -82,7 +89,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <body>
     <dom-bind>
       <template is="dom-bind">
-
         <div class="toolbar">
           <button on-click="_onPrevClick">&#8678;</button>
           <button on-click="_onNextClick">&#8680;</button>
@@ -105,6 +111,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       var scope1 = document.querySelector('template[is="dom-bind"]');
       var scope2 = document.querySelector('dom-bind');
+
       scope1.selected = 0;
       scope2.selected = 0;
 
