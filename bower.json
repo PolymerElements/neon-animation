@@ -37,12 +37,12 @@
   },
   "devDependencies": {
     "iron-flex-layout": "PolymerElements/iron-flex-layout#2.0-preview",
-    "paper-toolbar": "PolymerElements/paper-toolbar#^1.0.0",
+    "app-layout": "PolymerElements/app-layout#2.0-preview",
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
     "test-fixture": "PolymerElements/test-fixture#custom-elements-v1",
     "web-component-tester": "^4.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#v1",
-    "paper-item": "PolymerElements/paper-item#^1.0.0",
+    "paper-item": "PolymerElements/paper-item#2.0-preview",
     "paper-styles": "PolymerElements/paper-styles#2.0-preview",
     "iron-icon": "PolymerElements/iron-icon#2.0-preview",
     "iron-icons": "PolymerElements/iron-icons#2.0-preview",
@@ -59,6 +59,8 @@
     "paper-styles": "2.0-preview",
     "webcomponentsjs": "v1",
     "iron-icons": "2.0-preview",
-    "iron-iconset-svg": "2.0-preview"
+    "iron-iconset-svg": "2.0-preview",
+    "iron-behaviors": "2.0-preview",
+    "iron-a11y-keys-behavior": "2.0-preview"
   }
 }
