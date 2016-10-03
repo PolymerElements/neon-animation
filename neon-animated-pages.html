@@ -54,7 +54,6 @@ animations to be run when switching to or switching out of the page.
     </style>
     
     <slot id="content"></slot>
-    <content id="content"></content>
   </template>
 
 </dom-module>
@@ -90,20 +89,6 @@ animations to be run when switching to or switching out of the page.
     listeners: {
       'iron-select': '_onIronSelect',
       'neon-animation-finish': '_onNeonAnimationFinish'
-    },
-
-    ready: function() {
-      var slot = this.$$('slot');
-      var content = this.$$('content');
-      
-      // removes the id of the value based on using v1 or v0. (dual mode support)
-      if (!Polymer.version || Polymer.version >= '2') {
-        Polymer.dom(content).parentNode.removeChild(content);
-        this.$.content = slot;
-      } else {
-        Polymer.dom(slot).id = '';
-        this.$.content = content;
-      }
     },
 
     _onIronSelect: function(event) {
