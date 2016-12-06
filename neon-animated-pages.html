@@ -129,7 +129,7 @@ animations to be run when switching to or switching out of the page.
       if (oldPage) {
 
         // cancel the currently running animation if one is ongoing.
-        if (oldPage.classList.contains('neon-animating')) {
+        if (Polymer.dom(oldPage).classList.contains('neon-animating')) {
           this._squelchNextFinishEvent = true;
           this.cancelAnimation();
           this._completeSelectedChanged();
@@ -152,11 +152,11 @@ animations to be run when switching to or switching out of the page.
         }
 
         // display the oldPage during the transition.
-        oldPage.classList.add('neon-animating');
+        Polymer.dom(oldPage).classList.add('neon-animating');
       }
 
       // display the selectedPage during the transition.
-      selectedPage.classList.add('neon-animating');
+      Polymer.dom(selectedPage).classList.add('neon-animating');
 
       // actually run the animations.
       if (this.animationConfig.length >= 1) {
@@ -188,15 +188,15 @@ animations to be run when switching to or switching out of the page.
      */
     _completeSelectedChanged: function(oldPage, selectedPage) {
       if (selectedPage) {
-        selectedPage.classList.remove('neon-animating');
+        Polymer.dom(selectedPage).classList.remove('neon-animating');
       }
       if (oldPage) {
-        oldPage.classList.remove('neon-animating');
+        Polymer.dom(oldPage).classList.remove('neon-animating');
       }
       if (!selectedPage || !oldPage) {
         var nodes = this._getDistributedNodes(this.$.content);
         for (var node, index = 0; node = nodes[index]; index++) {
-          node.classList && node.classList.remove('neon-animating');
+          Polymer.dom(node).classList && Polymer.dom(node).classList.remove('neon-animating');
         }
       }
       this.async(this._notifyPageResize);
