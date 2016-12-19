@@ -32,7 +32,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             try {
               result = neonAnimation.configure(config);
               // Check if we have an Effect rather than an Animation
-              if (typeof result.cancel != 'function') { 
+              if (typeof result.cancel != 'function') {
                 result = document.timeline.play(result);
               }
             } catch (e) {
@@ -114,10 +114,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * Cancels the currently running animations.
      */
     cancelAnimation: function() {
-      for (var k in this._animations) {
-        this._animations[k].cancel();
+      for (var k in this._active) {
+        for (var i in this._active[k]){
+          this._active[k][i].animation.cancel();
+        }
+        delete this._active[k];
       }
-      this._animations = {};
     }
   };
 
