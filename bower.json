@@ -39,7 +39,7 @@
     "iron-flex-layout": "PolymerElements/iron-flex-layout#2.0-preview",
     "app-layout": "PolymerElements/app-layout#2.0-preview",
     "iron-component-page": "PolymerElements/iron-component-page#2.0-preview",
-    "test-fixture": "PolymerElements/test-fixture#custom-elements-v1",
+    "test-fixture": "PolymerElements/test-fixture#^2.0.0",
     "web-component-tester": "^4.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#v1",
     "paper-item": "PolymerElements/paper-item#2.0-preview",
@@ -49,8 +49,8 @@
     "paper-icon-button": "PolymerElements/paper-icon-button#2.0-preview",
     "web-animations-js": "web-animations/web-animations-js#^2.2.0"
   },
-  "variants" : {
-    "1.x" : {
+  "variants": {
+    "1.x": {
       "dependencies": {
         "polymer": "Polymer/polymer#^1.1.0",
         "iron-meta": "PolymerElements/iron-meta#^1.0.0",
@@ -75,7 +75,7 @@
     }
   },
   "resolutions": {
-    "test-fixture": "custom-elements-v1",
+    "test-fixture": "^2.0.0",
     "polymer": "2.0-preview",
     "webcomponentsjs": "v1"
   }
