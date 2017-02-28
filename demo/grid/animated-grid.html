@@ -72,7 +72,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <dom-repeat items="[[config]]">
       <template is="dom-repeat" items="[[config]]">
-        <div class$="[[_computeTileClass(item.color)]]">
+        <div item="[[item]]" class$="[[_computeTileClass(item.color)]]" on-click="_onClick">
           <span>[[item.value]]</span>
         </div>
       </template>
@@ -130,10 +130,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     },
 
-    listeners: {
-      click: '_onClick'
-    },
-
     _computeTileClass: function(color) {
       return 'tile ' + color + '-300';
     },
@@ -141,9 +137,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _onClick: function(event) {
       var target = event.composedPath ? event.composedPath()[0]
           : Polymer.dom(event).rootTarget;
-          
-      while (target !== this && !target._templateInstance) {
-        target = target.parentNode;
+      
+      if (!target.item) {
+        target = Polymer.dom(target).parentNode;
       }
 
       // configure the page animation
@@ -158,7 +154,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       this.fire('tile-click', {
         tile: target,
-        data: target._templateInstance.item
+        data: target.item
       });
     }
 
