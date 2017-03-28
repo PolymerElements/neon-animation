@@ -45,7 +45,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           #e0e0e0 16px
         );
       }
-      
+
       app-toolbar {
         color: white;
         background-color: var(--google-blue-500);
@@ -61,7 +61,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
       </div>
     </div>
-    
+
   </template>
 </dom-module>
 
@@ -86,7 +86,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     },
 
-    ready: function() {
+    attached: function() {
       this.sharedElements = { 'hero': this.$.main };
       this.animationConfig = {
           'entry': [{
