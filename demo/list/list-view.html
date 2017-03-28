@@ -91,7 +91,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     },
 
-    ready: function() {
+    attached: function() {
       this.animationConfig = {
         'entry': [{
           name: 'fade-in-animation',
@@ -110,10 +110,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _onClick: function(event) {
-      var target = event.target;
-      while (target !== this && !target._templateInstance) {
-        target = target.parentNode;
+      var eventPath = Polymer.dom(event.path);
+      var target = Polymer.dom(event.rootTarget);
+      var i = 1;
+
+      // necessary for polymer 2 since event.target is the same as
+      // Polymer.dom(event).localTarget in this case with a global listener
+      while (target && target.tagName !== 'PAPER-ITEM-BODY') {
+        target = eventPath.node[i];
+        i++;
       }
+
+      target = target ? target : event.target;
 
       // configure the page animation
       this.sharedElements = {
