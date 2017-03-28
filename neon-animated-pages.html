@@ -52,7 +52,7 @@ animations to be run when switching to or switching out of the page.
         pointer-events: none;
       }
     </style>
-    
+
     <slot id="content"></slot>
   </template>
 
@@ -194,7 +194,7 @@ animations to be run when switching to or switching out of the page.
         Polymer.dom(oldPage).classList.remove('neon-animating');
       }
       if (!selectedPage || !oldPage) {
-        var nodes = this._getDistributedNodes(this.$.content);
+        var nodes = Polymer.dom(this.$.content).getDistributedNodes();
         for (var node, index = 0; node = nodes[index]; index++) {
           node.classList && Polymer.dom(node).classList.remove('neon-animating');
         }
@@ -216,25 +216,7 @@ animations to be run when switching to or switching out of the page.
         return element == selectedPage;
       }
       this.notifyResize();
-    },
-
-   /**
-     * Returns distributed nodes either from the slot or
-     * content (dual-mode support).
-     * @private
-     */
-    _getDistributedNodes: function(projectionPoint) {
-      var domProjectionPoint = Polymer.dom(projectionPoint)
-
-      if (domProjectionPoint.getDistributedNodes) {
-        return domProjectionPoint.getDistributedNodes();
-      }
-      
-      return domProjectionPoint.assignedNodes({
-        flatten: true
-      });
     }
-
   })
 
 })();
