@@ -141,11 +141,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </dom-bind>
 
     <script>
+      var polymer2DomBind = document.querySelector('dom-bind');
+      var polymer1DomBindScope = document.querySelector('template[is="dom-bind"]');
 
-      var scope1 = document.querySelector('template[is="dom-bind"]');
-      var scope2 = document.querySelector('dom-bind');
-
-      scope1._onPolymerClick = function(event) {
+      polymer2DomBind._onPolymerClick = function(event) {
         this.$.list.sharedElements = {
           'ripple': event.target,
           'reverse-ripple': event.target
@@ -153,7 +152,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.pages.selected = 1;
       };
 
-      scope1._onAngularClick = function(event) {
+      polymer2DomBind._onAngularClick = function(event) {
         this.$.list.sharedElements = {
           'ripple': event.target,
           'reverse-ripple': event.target
@@ -161,13 +160,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.pages.selected = 2;
       };
 
-      scope1._onBackClick = function(event) {
+      polymer2DomBind._onBackClick = function(event) {
         this.$.pages.selected = 0;
       };
 
-      scope2._onPolymerClick = scope1._onPolymerClick;
-      scope2._onAngularClick = scope1._onAngularClick;
-      scope2._onBackClick = scope1._onBackClick;
+      polymer1DomBindScope._onPolymerClick = polymer2DomBind._onPolymerClick;
+      polymer1DomBindScope._onAngularClick = polymer2DomBind._onAngularClick;
+      polymer1DomBindScope._onBackClick = polymer2DomBind._onBackClick;
 
     </script>
 
