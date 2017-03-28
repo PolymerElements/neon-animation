@@ -67,7 +67,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var animatedPages = fixture('notify-resize');
         var resizables = Polymer.dom(animatedPages).children;
         var recieves = {};
-        for (var i=0; i < resizables.length; i++) {
+        for (var i = 0; i < resizables.length; i++) {
           var page = resizables[i];
           page.addEventListener('iron-resize', function(event) {
             var pageName = event.currentTarget.tagName;
