@@ -61,7 +61,7 @@ Polymer({
   },
 
   attached: function() {
-    this.animationConfig = {
+    this.animationConfig = this.animationConfig || {
       'entry': [{
         name: 'slide-from-top-animation',
         node: this.$.toolbar
