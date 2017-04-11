@@ -70,13 +70,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <dom-repeat items="[[config]]">
-      <template is="dom-repeat" items="[[config]]">
-        <div item="[[item]]" class$="[[_computeTileClass(item.color)]]" on-click="_onClick">
-          <span>[[item.value]]</span>
-        </div>
-      </template>
-    </dom-repeat>
+    <template is="dom-repeat" items="[[config]]">
+      <div item="[[item]]" class$="[[_computeTileClass(item.color)]]" on-click="_onClick">
+        <span>[[item.value]]</span>
+      </div>
+    </template>
 
   </template>
 </dom-module>
@@ -137,7 +135,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _onClick: function(event) {
       var target = event.composedPath ? event.composedPath()[0]
           : Polymer.dom(event).rootTarget;
-      
+
       if (!target.item) {
         target = Polymer.dom(target).parentNode;
       }
