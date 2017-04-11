@@ -133,8 +133,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _onClick: function(event) {
-      var target = event.composedPath ? event.composedPath()[0]
-          : Polymer.dom(event).rootTarget;
+      var target = Polymer.dom(event).rootTarget;
 
       if (!target.item) {
         target = Polymer.dom(target).parentNode;
