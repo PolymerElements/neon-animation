@@ -58,7 +58,7 @@ Configuration:
       var oldDelay = config.timing.delay;
       var abortedConfigure;
       for (var node, index = 0; node = nodes[index]; index++) {
-        config.timing.delay += nodeDelay;
+        config.timing.delay =  oldDelay + nodeDelay * index;
         config.node = node;
 
         var animation = document.createElement(config.animation);

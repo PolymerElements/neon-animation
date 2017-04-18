@@ -1,0 +1,77 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+<head>
+
+  <title>cascaded-animation tests</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../test-fixture/test-fixture-mocha.js"></script>
+
+  <link rel="import" href="../../test-fixture/test-fixture.html">
+  <link rel="import" href="../animations/cascaded-animation.html">
+  <link rel="import" href="../animations/fade-in-animation.html">
+
+</head>
+<body>
+
+<test-fixture id="cascadedAnimation">
+  <template>
+    <cascaded-animation></cascaded-animation>
+  </template>
+</test-fixture>
+
+
+<script>
+  suite('cascaded-animation', function () {
+    test('the first animation should be have no delay and the flowing animations an increasing delay of 1000', function () {
+      var cascadedAnimation = fixture('cascadedAnimation');
+      var effects = cascadedAnimation.configure({
+        "animation": "fade-in-animation",
+        nodes: [document.createElement("div"), document.createElement("div"), document.createElement("div")],
+        nodeDelay: 1000
+      });
+
+      expect(effects.children.length).to.equal(3);
+      expect(effects._timing._delay).to.equal(0);
+      expect(effects.children[0]._timing._delay).to.equal(0);
+      expect(effects.children[1]._timing._delay).to.equal(1000);
+      expect(effects.children[2]._timing._delay).to.equal(2000);
+    });
+
+    test('the first animation should be have a delay of 500ms and the flowing an increasing delay of 1000', function () {
+      var cascadedAnimation = fixture('cascadedAnimation');
+      var effects = cascadedAnimation.configure({
+        "animation": "fade-in-animation",
+        nodes: [document.createElement("div"), document.createElement("div"), document.createElement("div")],
+        nodeDelay: 1000,
+        timing: {
+          "delay": 500
+        }
+      });
+
+      expect(effects.children.length).to.equal(3);
+      expect(effects._timing._delay).to.equal(0);
+      expect(effects.children[0]._timing._delay).to.equal(500);
+      expect(effects.children[1]._timing._delay).to.equal(1500);
+      expect(effects.children[2]._timing._delay).to.equal(2500);
+    });
+  });
+</script>
+
+</body>
+</html>
