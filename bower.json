@@ -21,7 +21,6 @@
     "neon-animatable.html",
     "neon-animations.html"
   ],
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git://github.com/PolymerElements/neon-animation"
