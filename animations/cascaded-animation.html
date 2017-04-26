@@ -61,7 +61,7 @@ Configuration:
         config.timing.delay += nodeDelay;
         config.node = node;
 
-        var animation = document.createElement(config.animation);
+        var animation = /** @type {{isNeonAnimation: boolean, configure: Function}} */ (document.createElement(config.animation));
         if (animation.isNeonAnimation) {
           var effect = animation.configure(config);
 
