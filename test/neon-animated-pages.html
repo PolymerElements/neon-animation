@@ -28,6 +28,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../animations/slide-from-left-animation.html">
   <link rel="import" href="../animations/slide-right-animation.html">
   <link rel="import" href="test-resizable-pages.html">
+  <link rel="import" href="test-page-with-nested-selector.html">
 
 </head>
 <body>
@@ -54,6 +55,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <neon-animated-pages entry-animation="slide-from-left-animation" exit-animation="slide-right-animation" animate-initial-selection>
         <neon-animatable></neon-animatable>
         <neon-animatable></neon-animatable>
+      </neon-animated-pages>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="bubbling-iron-select">
+    <template>
+      <neon-animated-pages selected="0">
+        <page-with-nested-selector></page-with-nested-selector>
+        <page-with-nested-selector></page-with-nested-selector>
       </neon-animated-pages>
     </template>
   </test-fixture>
@@ -93,6 +103,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           done();
         });
         animatedPages.selected = 0;
+      });
+    });
+    suite('non-regression', function() {
+      test('bubbling \'iron-select\' should not trigger a transition', function(done) {
+        var animatedPages = fixture('bubbling-iron-select');
+        var pages = Polymer.dom(animatedPages).children;
+        assert.strictEqual(Number(animatedPages.selected), 0);
+        // Run an animated transition once (required)
+        animatedPages.selected = 1;
+        pages.forEach(function(page) {
+          page.nestedSelector.selected = 0;
+        });
+
+        setTimeout(function() {
+          // Change selections on iron-selectors nested in pages
+          assert.strictEqual(Number(animatedPages.selected), 1);
+          pages.forEach(function(page) {
+            assert.strictEqual(Number(page.nestedSelector.selected), 0);
+          });
+          
+          // We fail if we detect an animated transition
+          animatedPages.addEventListener('neon-animation-finish', function(event) {
+            assert.fail();
+          });
+          pages.forEach(function(page) {
+            page.nestedSelector.selected = 1;
+          });
+          setTimeout(function() {
+            pages.forEach(function(page) {
+              assert.strictEqual(Number(page.nestedSelector.selected), 1);
+            });
+            done();
+          }, 600);
+        }, 600);
       });
     });
   </script>
