@@ -1,0 +1,39 @@
+{
+  "name": "@polymer/neon-animation",
+  "flat": true,
+  "version": "3.0.0-pre.1",
+  "description": "A system for animating Polymer-based web components",
+  "contributors": [
+    "The Polymer Authors"
+  ],
+  "keywords": [
+    "web-components",
+    "web-component",
+    "polymer",
+    "web-animations"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/neon-animation"
+  },
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/PolymerElements/neon-animation",
+  "dependencies": {
+    "@polymer/iron-resizable-behavior": "^3.0.0-pre.1",
+    "@polymer/iron-selector": "^3.0.0-pre.1",
+    "@polymer/polymer": "^3.0.0-pre.1"
+  },
+  "devDependencies": {
+    "@polymer/app-layout": "^3.0.0-pre.1",
+    "@polymer/iron-flex-layout": "^3.0.0-pre.1",
+    "@polymer/iron-icon": "^3.0.0-pre.1",
+    "@polymer/iron-icons": "^3.0.0-pre.1",
+    "@polymer/paper-icon-button": "^3.0.0-pre.1",
+    "@polymer/paper-item": "^3.0.0-pre.1",
+    "@polymer/paper-styles": "^3.0.0-pre.1",
+    "@polymer/test-fixture": "^3.0.0-pre.1",
+    "web-animations-js": "^2.3.1",
+    "wct-browser-legacy": "0.0.1-pre.10",
+    "@webcomponents/webcomponentsjs": "^1.0.0"
+  }
+}
