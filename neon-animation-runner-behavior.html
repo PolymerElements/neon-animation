@@ -133,11 +133,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     /**
      * Cancels the currently running animations.
      */
-     cancelAnimation: function() {
-      for (var k in this._animations) {
-        this._animations[k].cancel();
+    cancelAnimation: function() {
+      for (var k in this._active) {
+        var entries = this._active[k]
+
+        for (var j in entries) {
+          entries[j].animation.cancel();
+        }
       }
-      this._animations = {};
+
+      this._active = {};
     }
   };
 
