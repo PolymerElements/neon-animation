@@ -29,7 +29,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           // is this element actually a neon animation?
           if (neonAnimation.isNeonAnimation) {
             var result = null;
-            // Closure compilation
+            // Closure compiler does not work well with a try / catch here. .configure needs to be
+            // explicitly defined
             if (!neonAnimation.configure) {
               /**
                * @param {Object} config
