@@ -1,0 +1,10 @@
+{
+  "name": "@polymer/neon-animation",
+  "private": true,
+  "description": "A system for animating Polymer-based web components",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/neon-animation"
+  },
+  "license": "BSD-3-Clause"
+}
