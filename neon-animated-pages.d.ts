@@ -27,10 +27,10 @@ interface NeonAnimatedPagesElement extends Polymer.Element, Polymer.IronResizabl
    * if true, the initial page selection will also be animated according to its animation config.
    */
   animateInitialSelection: boolean|null|undefined;
-  _onIronSelect(event: any): any;
-  _completeSelectedChanged(oldPage?: object|null, selectedPage?: object|null): any;
-  _onNeonAnimationFinish(event: any): any;
-  _notifyPageResize(): any;
+  _onIronSelect(event: any): void;
+  _completeSelectedChanged(oldPage?: object|null, selectedPage?: object|null): void;
+  _onNeonAnimationFinish(event: any): void;
+  _notifyPageResize(): void;
 }
 
 interface HTMLElementTagNameMap {

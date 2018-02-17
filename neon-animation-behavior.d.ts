@@ -24,9 +24,10 @@ declare namespace Polymer {
 
     /**
      * Can be used to determine that elements implement this behavior.
+     *      
      */
     isNeonAnimation: boolean;
-    created(): any;
+    created(): void;
 
     /**
      * Returns the animation timing by mixing in properties from `config` to the defaults defined
@@ -37,12 +38,12 @@ declare namespace Polymer {
     /**
      * Sets `transform` and `transformOrigin` properties along with the prefixed versions.
      */
-    setPrefixedProperty(node: any, property: any, value: any): any;
+    setPrefixedProperty(node: any, property: any, value: any): void;
 
     /**
      * Called when the animation finishes.
      */
-    complete(config: any): any;
+    complete(config: any): void;
   }
 
   const NeonAnimationBehavior: object;

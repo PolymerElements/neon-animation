@@ -35,7 +35,7 @@
  * ```
  */
 interface RippleAnimationElement extends Polymer.Element, Polymer.NeonSharedElementAnimationBehavior {
-  complete(): any;
+  complete(): void;
   configure(config: any): any;
 }
 
