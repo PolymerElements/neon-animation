@@ -33,7 +33,7 @@
  * ```
  */
 interface ReverseRippleAnimationElement extends Polymer.Element, Polymer.NeonSharedElementAnimationBehavior {
-  complete(): any;
+  complete(): void;
   configure(config: any): any;
 }
 

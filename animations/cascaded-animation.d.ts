@@ -27,7 +27,7 @@
  * ```
  */
 interface CascadedAnimationElement extends Polymer.Element, Polymer.NeonAnimationBehavior {
-  complete(): any;
+  complete(): void;
   configure(config: {animation: string, nodes: Element[], nodeDelay?: number, timing?: object|null}): any;
 }
 

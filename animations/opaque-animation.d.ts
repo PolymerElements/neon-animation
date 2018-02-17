@@ -16,7 +16,7 @@
  * webkit/safari from drawing a frame before an animation for elements that animate from display:none.
  */
 interface OpaqueAnimationElement extends Polymer.Element, Polymer.NeonAnimationBehavior {
-  complete(config: any): any;
+  complete(config: any): void;
   configure(config: any): any;
 }
 

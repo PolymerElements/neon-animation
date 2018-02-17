@@ -19,17 +19,17 @@ declare namespace Polymer {
   interface NeonAnimationRunnerBehavior extends Polymer.NeonAnimatableBehavior {
     _configureAnimations(configs: any): any;
     _shouldComplete(activeEntries: any): any;
-    _complete(activeEntries: any): any;
+    _complete(activeEntries: any): void;
 
     /**
      * Plays an animation with an optional `type`.
      */
-    playAnimation(type?: string, cookie?: object): any;
+    playAnimation(type?: string, cookie?: object): void;
 
     /**
      * Cancels the currently running animations.
      */
-    cancelAnimation(): any;
+    cancelAnimation(): void;
   }
 
   const NeonAnimationRunnerBehavior: object;

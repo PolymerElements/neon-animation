@@ -34,11 +34,11 @@ declare namespace Polymer {
      * manually if using this. The animated node is set to `this` if using this property.
      */
     exitAnimation: string|null|undefined;
-    _entryAnimationChanged(): any;
-    _exitAnimationChanged(): any;
-    _copyProperties(config1: any, config2: any): any;
+    _entryAnimationChanged(): void;
+    _exitAnimationChanged(): void;
+    _copyProperties(config1: any, config2: any): void;
     _cloneConfig(config: any): any;
-    _getAnimationConfigRecursive(type: any, map: any, allConfigs: any): any;
+    _getAnimationConfigRecursive(type: any, map: any, allConfigs: any): void;
 
     /**
      * An element implementing `Polymer.NeonAnimationRunnerBehavior` calls this method to configure
