@@ -30,13 +30,14 @@ declare namespace Polymer {
     created(): void;
 
     /**
-     * Returns the animation timing by mixing in properties from `config` to the defaults defined
-     * by the animation.
+     * Returns the animation timing by mixing in properties from `config` to the
+     * defaults defined by the animation.
      */
     timingFromConfig(config: any): any;
 
     /**
-     * Sets `transform` and `transformOrigin` properties along with the prefixed versions.
+     * Sets `transform` and `transformOrigin` properties along with the prefixed
+     * versions.
      */
     setPrefixedProperty(node: any, property: any, value: any): void;
 

@@ -11,7 +11,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="neon-animatable-behavior.html">
 
 <script>
-
   /**
    * `Polymer.NeonAnimationRunnerBehavior` adds a method to run animations.
    *
@@ -29,8 +28,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           // is this element actually a neon animation?
           if (neonAnimation.isNeonAnimation) {
             var result = null;
-            // Closure compiler does not work well with a try / catch here. .configure needs to be
-            // explicitly defined
+            // Closure compiler does not work well with a try / catch here.
+            // .configure needs to be explicitly defined
             if (!neonAnimation.configure) {
               /**
                * @param {Object} config
@@ -42,7 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             result = neonAnimation.configure(config);
-            resultsToPlay.push({ result: result, config: config });
+            resultsToPlay.push({result: result, config: config});
           } else {
             console.warn(this.is + ':', config.name, 'not found!');
           }
@@ -138,7 +137,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       for (var k in this._active) {
         var entries = this._active[k]
 
-        for (var j in entries) {
+                      for (var j in entries) {
           entries[j].animation.cancel();
         }
       }
@@ -148,8 +147,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   };
 
   /** @polymerBehavior Polymer.NeonAnimationRunnerBehavior */
-  Polymer.NeonAnimationRunnerBehavior = [
-    Polymer.NeonAnimatableBehavior,
-    Polymer.NeonAnimationRunnerBehaviorImpl
-  ];
+  Polymer.NeonAnimationRunnerBehavior =
+      [Polymer.NeonAnimatableBehavior, Polymer.NeonAnimationRunnerBehaviorImpl];
 </script>

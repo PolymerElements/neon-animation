@@ -42,25 +42,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </dom-module>
 
 <script>
-
   Polymer({
 
     is: 'circles-page',
 
-    behaviors: [
-      Polymer.NeonSharedElementAnimatableBehavior
-    ],
+    behaviors: [Polymer.NeonSharedElementAnimatableBehavior],
 
     properties: {
 
-      animationConfig: {
-        type: Object
-      }
+      animationConfig: {type: Object}
     },
 
-    listeners: {
-      'click': '_onClick'
-    },
+    listeners: {'click': '_onClick'},
 
     attached: function() {
       if (this.animationConfig) {
@@ -76,14 +69,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           nodes: circlesArray
         }],
 
-        'exit': [{
-          name: 'hero-animation',
-          id: 'hero',
-          fromPage: this
-        }, {
-          name: 'cascaded-animation',
-          animation: 'scale-down-animation'
-        }]
+        'exit': [
+          {name: 'hero-animation', id: 'hero', fromPage: this},
+          {name: 'cascaded-animation', animation: 'scale-down-animation'}
+        ]
       };
     },
 
@@ -92,9 +81,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       if (target.classList.contains('circle')) {
         // configure the page animation
-        this.sharedElements = {
-          'hero': target
-        };
+        this.sharedElements = {'hero': target};
 
         var nodesToScale = [];
         var circles = Polymer.dom(this.root).querySelectorAll('.circle');
@@ -111,5 +98,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
   });
-
 </script>

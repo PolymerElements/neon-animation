@@ -12,9 +12,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="neon-animation-behavior.html">
 
 <script>
-
   /**
-   * Use `Polymer.NeonSharedElementAnimationBehavior` to implement shared element animations.
+   * Use `Polymer.NeonSharedElementAnimationBehavior` to implement shared element
+   * animations.
    * @polymerBehavior Polymer.NeonSharedElementAnimationBehavior
    */
   Polymer.NeonSharedElementAnimationBehaviorImpl = {
@@ -24,9 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       /**
        * Cached copy of shared elements.
        */
-      sharedElements: {
-        type: Object
-      }
+      sharedElements: {type: Object}
 
     },
 
@@ -37,12 +35,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var fromPage = config.fromPage;
       var toPage = config.toPage;
       if (!fromPage || !toPage) {
-        console.warn(this.is + ':', !fromPage ? 'fromPage' : 'toPage', 'is undefined!');
+        console.warn(
+            this.is + ':', !fromPage ? 'fromPage' : 'toPage', 'is undefined!');
         return null;
       };
 
       if (!fromPage.sharedElements || !toPage.sharedElements) {
-        console.warn(this.is + ':', 'sharedElements are undefined for', !fromPage.sharedElements ? fromPage : toPage);
+        console.warn(
+            this.is + ':',
+            'sharedElements are undefined for',
+            !fromPage.sharedElements ? fromPage : toPage);
         return null;
       };
 
@@ -50,14 +52,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var to = toPage.sharedElements[config.id];
 
       if (!from || !to) {
-        console.warn(this.is + ':', 'sharedElement with id', config.id, 'not found in', !from ? fromPage : toPage);
+        console.warn(
+            this.is + ':',
+            'sharedElement with id',
+            config.id,
+            'not found in',
+            !from ? fromPage : toPage);
         return null;
       }
 
-      this.sharedElements = {
-        from: from,
-        to: to
-      };
+      this.sharedElements = {from: from, to: to};
       return this.sharedElements;
     }
 
@@ -68,5 +72,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer.NeonAnimationBehavior,
     Polymer.NeonSharedElementAnimationBehaviorImpl
   ];
-
 </script>

@@ -28,14 +28,11 @@ Configuration:
 -->
 
 <script>
-
   Polymer({
 
     is: 'cascaded-animation',
 
-    behaviors: [
-      Polymer.NeonAnimationBehavior
-    ],
+    behaviors: [Polymer.NeonAnimationBehavior],
 
     /**
      * @param {{
@@ -84,11 +81,11 @@ Configuration:
     },
 
     complete: function() {
-      for (var animation, index = 0; animation = this._animations[index]; index++) {
+      for (var animation, index = 0; animation = this._animations[index];
+           index++) {
         animation.complete(animation.config);
       }
     }
 
   });
-
 </script>

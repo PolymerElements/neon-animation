@@ -35,22 +35,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </dom-module>
 
 <script>
-(function() {
+  (function() {
   Polymer({
     is: 'x-card',
 
-    behaviors: [
-      Polymer.NeonSharedElementAnimatableBehavior
-    ],
+    behaviors: [Polymer.NeonSharedElementAnimatableBehavior],
 
     properties: {
-      animationConfig: {
-        type: Object
-      },
+      animationConfig: {type: Object},
 
-      sharedElements: {
-        type: Object
-      }
+      sharedElements: {type: Object}
     },
 
     attached: function() {
@@ -59,35 +53,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       this.animationConfig = {
-        'entry': [{
-          name: 'ripple-animation',
-          id: 'ripple',
-          toPage: this
-        }, {
-          name: 'fade-out-animation',
-          node: this.$.placeholder,
-          timing: {
-            delay: 250
+        'entry': [
+          {name: 'ripple-animation', id: 'ripple', toPage: this},
+          {
+            name: 'fade-out-animation',
+            node: this.$.placeholder,
+            timing: {delay: 250}
+          },
+          {
+            name: 'fade-in-animation',
+            node: this.$.container,
+            timing: {delay: 50}
           }
-        }, {
-          name: 'fade-in-animation',
-          node: this.$.container,
-          timing: {
-            delay: 50
-          }
-        }],
+        ],
 
-        'exit': [{
-          name: 'fade-out-animation',
-          node: this.$.container,
-          timing: {
-            duration: 0
+        'exit': [
+          {
+            name: 'fade-out-animation',
+            node: this.$.container,
+            timing: {duration: 0}
+          },
+          {
+            name: 'reverse-ripple-animation',
+            id: 'reverse-ripple',
+            fromPage: this
           }
-        }, {
-          name: 'reverse-ripple-animation',
-          id: 'reverse-ripple',
-          fromPage: this
-        }]
+        ]
       };
 
       this.sharedElements = {
@@ -96,5 +87,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       };
     }
   });
-})();
+  })();
 </script>

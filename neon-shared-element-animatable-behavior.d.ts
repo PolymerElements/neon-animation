@@ -14,8 +14,8 @@
 declare namespace Polymer {
 
   /**
-   * Use `Polymer.NeonSharedElementAnimatableBehavior` to implement elements containing shared element
-   * animations.
+   * Use `Polymer.NeonSharedElementAnimatableBehavior` to implement elements
+   * containing shared element animations.
    */
   interface NeonSharedElementAnimatableBehavior extends Polymer.NeonAnimatableBehavior {
 

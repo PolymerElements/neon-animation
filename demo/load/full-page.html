@@ -43,40 +43,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </dom-module>
 
 <script>
+  Polymer({
 
-Polymer({
+    is: 'full-page',
 
-  is: 'full-page',
+    behaviors:
+        [Polymer.NeonAnimatableBehavior, Polymer.NeonAnimationRunnerBehavior],
 
-  behaviors: [
-    Polymer.NeonAnimatableBehavior,
-    Polymer.NeonAnimationRunnerBehavior
-  ],
+    properties: {
 
-  properties: {
+      animationConfig: {type: Object}
+    },
 
-    animationConfig: {
-      type: Object
+    attached: function() {
+      this.animationConfig = this.animationConfig || {
+        'entry': [
+          {name: 'slide-from-top-animation', node: this.$.toolbar},
+          {animatable: this.$.grid, type: 'entry'}
+        ]
+      };
+    },
+
+    show: function() {
+      this.style.visibility = 'visible';
+      this.playAnimation('entry');
     }
-  },
 
-  attached: function() {
-    this.animationConfig = this.animationConfig || {
-      'entry': [{
-        name: 'slide-from-top-animation',
-        node: this.$.toolbar
-      }, {
-        animatable: this.$.grid,
-        type: 'entry'
-      }]
-    };
-  },
-
-  show: function() {
-    this.style.visibility = 'visible';
-    this.playAnimation('entry');
-  }
-
-});
-
+  });
 </script>

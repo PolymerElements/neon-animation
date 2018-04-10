@@ -80,14 +80,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </dom-module>
 
 <script>
-
   Polymer({
 
     is: 'animated-grid',
 
-    behaviors: [
-      Polymer.NeonSharedElementAnimatableBehavior
-    ],
+    behaviors: [Polymer.NeonSharedElementAnimatableBehavior],
 
     properties: {
 
@@ -113,15 +110,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: Object,
         value: function() {
           return {
-            'exit': [{
-              name: 'ripple-animation',
-              id: 'ripple',
-              fromPage: this
-            }, {
-              name: 'hero-animation',
-              id: 'hero',
-              fromPage: this
-            }]
+            'exit': [
+              {name: 'ripple-animation', id: 'ripple', fromPage: this},
+              {name: 'hero-animation', id: 'hero', fromPage: this}
+            ]
           }
         }
       }
@@ -140,21 +132,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       // configure the page animation
-      this.sharedElements = {
-        'hero': target,
-        'ripple': target
-      };
+      this.sharedElements = {'hero': target, 'ripple': target};
       this.animationConfig['exit'][0].gesture = {
         x: event.x || event.pageX,
         y: event.y || event.pageY
       };
 
-      this.fire('tile-click', {
-        tile: target,
-        data: target.item
-      });
+      this.fire('tile-click', {tile: target, data: target.item});
     }
 
   });
-
 </script>

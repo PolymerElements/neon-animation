@@ -45,28 +45,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </dom-module>
 
 <script>
-
   Polymer({
 
     is: 'fullsize-page-with-card',
 
-    behaviors: [
-      Polymer.NeonSharedElementAnimatableBehavior
-    ],
+    behaviors: [Polymer.NeonSharedElementAnimatableBehavior],
 
     properties: {
 
-      color: {
-        type: String
-      },
+      color: {type: String},
 
-      sharedElements: {
-        type: Object
-      },
+      sharedElements: {type: Object},
 
-      animationConfig: {
-        type: Object
-      }
+      animationConfig: {type: Object}
     },
 
     attached: function() {
@@ -74,33 +65,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return;
       }
 
-      this.sharedElements = {
-        'hero': this.$.card,
-        'ripple': this.$.fixed
-      };
+      this.sharedElements = {'hero': this.$.card, 'ripple': this.$.fixed};
 
       this.animationConfig = {
-        'entry': [{
-          name: 'ripple-animation',
-          id: 'ripple',
-          toPage: this,
-        }, {
-          name: 'hero-animation',
-          id: 'hero',
-          toPage: this,
-          timing: {
-            delay: 150
+        'entry': [
+          {
+            name: 'ripple-animation',
+            id: 'ripple',
+            toPage: this,
+          },
+          {
+            name: 'hero-animation',
+            id: 'hero',
+            toPage: this,
+            timing: {delay: 150}
           }
-        }],
-        'exit': [{
-          name: 'fade-out-animation',
-          node: this.$.fixed
-        }, {
-          name: 'transform-animation',
-          transformFrom: 'none',
-          transformTo: 'translate(0px,-200vh) scale(0.9,1)',
-          node: this.$.card
-        }]
+        ],
+        'exit': [
+          {name: 'fade-out-animation', node: this.$.fixed},
+          {
+            name: 'transform-animation',
+            transformFrom: 'none',
+            transformTo: 'translate(0px,-200vh) scale(0.9,1)',
+            node: this.$.card
+          }
+        ]
       };
     },
 
@@ -121,5 +110,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
   });
-
 </script>

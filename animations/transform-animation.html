@@ -29,14 +29,11 @@ Configuration:
 -->
 
 <script>
-
   Polymer({
 
     is: 'transform-animation',
 
-    behaviors: [
-      Polymer.NeonAnimationBehavior
-    ],
+    behaviors: [Polymer.NeonAnimationBehavior],
 
     /**
      * @param {{
@@ -52,10 +49,10 @@ Configuration:
       var transformFrom = config.transformFrom || 'none';
       var transformTo = config.transformTo || 'none';
 
-      this._effect = new KeyframeEffect(node, [
-        {'transform': transformFrom},
-        {'transform': transformTo}
-      ], this.timingFromConfig(config));
+      this._effect = new KeyframeEffect(
+          node,
+          [{'transform': transformFrom}, {'transform': transformTo}],
+          this.timingFromConfig(config));
 
       if (config.transformOrigin) {
         this.setPrefixedProperty(node, 'transformOrigin', config.transformOrigin);
@@ -65,5 +62,4 @@ Configuration:
     }
 
   });
-
 </script>

@@ -28,14 +28,11 @@ Configuration:
 -->
 
 <script>
-
   Polymer({
 
     is: 'scale-down-animation',
 
-    behaviors: [
-      Polymer.NeonAnimationBehavior
-    ],
+    behaviors: [Polymer.NeonAnimationBehavior],
 
     configure: function(config) {
       var node = config.node;
@@ -47,10 +44,10 @@ Configuration:
         scaleProperty = 'scale(1, 0)';
       }
 
-      this._effect = new KeyframeEffect(node, [
-        {'transform': 'scale(1,1)'},
-        {'transform': scaleProperty}
-      ], this.timingFromConfig(config));
+      this._effect = new KeyframeEffect(
+          node,
+          [{'transform': 'scale(1,1)'}, {'transform': scaleProperty}],
+          this.timingFromConfig(config));
 
       if (config.transformOrigin) {
         this.setPrefixedProperty(node, 'transformOrigin', config.transformOrigin);
@@ -60,5 +57,4 @@ Configuration:
     }
 
   });
-
 </script>
