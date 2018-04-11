@@ -28,14 +28,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </dom-module>
 
 <script>
-
   Polymer({
 
     is: 'animated-dropdown',
 
-    behaviors: [
-      Polymer.NeonAnimationRunnerBehavior
-    ],
+    behaviors: [Polymer.NeonAnimationRunnerBehavior],
 
     properties: {
 
@@ -48,24 +45,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               node: this,
               transformOrigin: '0 0'
             }],
-            'exit': [{
-              name: 'fade-out-animation',
-              node: this
-            }]
+                'exit': [{name: 'fade-out-animation', node: this}]
           }
         }
       },
 
-      _showing: {
-        type: Boolean,
-        value: false
-      }
+      _showing: {type: Boolean, value: false}
 
     },
 
-    listeners: {
-      'neon-animation-finish': '_onAnimationFinish'
-    },
+    listeners: {'neon-animation-finish': '_onAnimationFinish'},
 
     _onAnimationFinish: function() {
       if (this._showing) {
@@ -86,5 +75,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
   });
-
 </script>

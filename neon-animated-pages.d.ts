@@ -24,7 +24,7 @@ interface NeonAnimatedPagesElement extends Polymer.Element, Polymer.IronResizabl
   activateEvent: string|null|undefined;
 
   /**
-   * if true, the initial page selection will also be animated according to its animation config.
+   * its animation config.
    */
   animateInitialSelection: boolean|null|undefined;
   _onIronSelect(event: any): void;

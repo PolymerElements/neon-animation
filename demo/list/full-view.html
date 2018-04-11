@@ -66,24 +66,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </dom-module>
 
 <script>
-
   Polymer({
 
     is: 'full-view',
 
-    behaviors: [
-      Polymer.NeonAnimatableBehavior
-    ],
+    behaviors: [Polymer.NeonAnimatableBehavior],
 
     properties: {
 
-      sharedElements: {
-        type: Object
-      },
+      sharedElements: {type: Object},
 
-      animationConfig: {
-        type: Object
-      }
+      animationConfig: {type: Object}
     },
 
     attached: function() {
@@ -91,27 +84,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return;
       }
 
-      this.sharedElements = { 'hero': this.$.main };
+      this.sharedElements = {'hero': this.$.main};
       this.animationConfig = {
-          'entry': [{
-            name: 'fade-in-animation',
-            node: this.$.button
-          }, {
-            name: 'hero-animation',
-            id: 'hero',
-            toPage: this
-          }],
+        'entry': [
+          {name: 'fade-in-animation', node: this.$.button},
+          {name: 'hero-animation', id: 'hero', toPage: this}
+        ],
 
-          'exit': [{
-            name: 'fade-out-animation',
-            node: this.$.button
-          }, {
+        'exit': [
+          {name: 'fade-out-animation', node: this.$.button},
+          {
             name: 'scale-down-animation',
             node: this.$.main,
             transformOrigin: '50% 50%',
             axis: 'y'
-          }]
-        }
+          }
+        ]
+      }
     },
 
     _onClearButtonClick: function() {
@@ -119,5 +108,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
   });
-
 </script>

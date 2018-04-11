@@ -36,19 +36,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </dom-module>
 
 <script>
-(function() {
+  (function() {
   Polymer({
     is: 'x-cards-list',
 
-    behaviors: [
-      Polymer.NeonSharedElementAnimatableBehavior
-    ],
+    behaviors: [Polymer.NeonSharedElementAnimatableBehavior],
 
-    properties: {
-      animationConfig: {
-        type: Object
-      }
-    },
+    properties: {animationConfig: {type: Object}},
 
     attached: function() {
       if (this.animationConfig) {
@@ -56,26 +50,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       this.animationConfig = {
-        'entry': [{
-          name: 'reverse-ripple-animation',
-          id: 'reverse-ripple',
-          toPage: this
-        }],
+        'entry': [
+          {name: 'reverse-ripple-animation', id: 'reverse-ripple', toPage: this}
+        ],
 
-        'exit': [{
-          name: 'fade-out-animation',
-          node: this.$.container,
-          timing: {
-            delay: 150,
-            duration: 0
-          }
-        }, {
-          name: 'ripple-animation',
-          id: 'ripple',
-          fromPage: this
-        }]
+        'exit': [
+          {
+            name: 'fade-out-animation',
+            node: this.$.container,
+            timing: {delay: 150, duration: 0}
+          },
+          {name: 'ripple-animation', id: 'ripple', fromPage: this}
+        ]
       };
     }
   });
-})();
+  })();
 </script>

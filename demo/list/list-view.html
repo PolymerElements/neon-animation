@@ -64,18 +64,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </dom-module>
 
 <script>
-
   Polymer({
 
     is: 'list-view',
 
-    behaviors: [
-      Polymer.NeonAnimatableBehavior
-    ],
+    behaviors: [Polymer.NeonAnimatableBehavior],
 
-    listeners: {
-      'click': '_onClick'
-    },
+    listeners: {'click': '_onClick'},
 
     properties: {
 
@@ -86,9 +81,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       },
 
-      animationConfig: {
-        type: Object
-      }
+      animationConfig: {type: Object}
     },
 
     attached: function() {
@@ -97,19 +90,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       this.animationConfig = {
-        'entry': [{
-          name: 'fade-in-animation',
-          node: this.$.button
-        }],
+        'entry': [{name: 'fade-in-animation', node: this.$.button}],
 
-        'exit': [{
-          name: 'fade-out-animation',
-          node: this.$.button
-        }, {
-          name: 'hero-animation',
-          id: 'hero',
-          fromPage: this
-        }]
+        'exit': [
+          {name: 'fade-out-animation', node: this.$.button},
+          {name: 'hero-animation', id: 'hero', fromPage: this}
+        ]
       };
     },
 
@@ -127,5 +113,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
   });
-
 </script>

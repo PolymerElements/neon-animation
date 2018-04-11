@@ -12,10 +12,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="neon-animatable-behavior.html">
 
 <script>
-
   /**
-   * Use `Polymer.NeonSharedElementAnimatableBehavior` to implement elements containing shared element
-   * animations.
+   * Use `Polymer.NeonSharedElementAnimatableBehavior` to implement elements
+   * containing shared element animations.
    * @polymerBehavior Polymer.NeonSharedElementAnimatableBehavior
    */
   Polymer.NeonSharedElementAnimatableBehaviorImpl = {
@@ -25,10 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       /**
        * A map of shared element id to node.
        */
-      sharedElements: {
-        type: Object,
-        value: {}
-      }
+      sharedElements: {type: Object, value: {}}
 
     }
 
@@ -39,5 +35,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer.NeonAnimatableBehavior,
     Polymer.NeonSharedElementAnimatableBehaviorImpl
   ];
-
 </script>

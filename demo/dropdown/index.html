@@ -37,12 +37,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </dom-bind>
 
     <script>
-
       var scope1 = document.querySelector('template[is="dom-bind"]');
       var scope2 = document.querySelector('dom-bind');
 
       scope1._onButtonClick = function(event) {
-        var dropdown = document.querySelector('#' + event.target.getAttribute('dropdown-id'));
+        var dropdown =
+            document.querySelector('#' + event.target.getAttribute('dropdown-id'));
         if (dropdown) {
           dropdown.show();
         }
@@ -54,7 +54,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       scope2._onButtonClick = scope1._onButtonClick;
       scope2._onDropdownClick = scope1._onDropdownClick;
-
     </script>
 
   </body>

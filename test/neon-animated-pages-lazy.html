@@ -19,7 +19,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
-  <script>Polymer = {lazyRegister: true}</script>
+  <script>
+    Polymer = {
+      lazyRegister: true
+    }
+  </script>
 
   <script src="../../web-component-tester/browser.js"></script>
   <script src="../../test-fixture/test-fixture-mocha.js"></script>
@@ -61,8 +65,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           assert.equal(event.detail.toPage, pages[1]);
           assert.isTrue(animatedPages._complete.calledTwice);
           var a$ = animatedPages._complete.getCall(1).args[0];
-          assert.isTrue(a$[0].neonAnimation.isNeonAnimation, 'entry animation is not a registered animation');
-          assert.isTrue(a$[1].neonAnimation.isNeonAnimation, 'exit animation is not a registered animation');
+          assert.isTrue(
+              a$[0].neonAnimation.isNeonAnimation,
+              'entry animation is not a registered animation');
+          assert.isTrue(
+              a$[1].neonAnimation.isNeonAnimation,
+              'exit animation is not a registered animation');
           done();
         });
         animatedPages.selected = 0;

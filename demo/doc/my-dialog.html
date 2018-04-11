@@ -35,42 +35,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </dom-module>
 
 <script>
-
   Polymer({
 
     is: 'my-dialog',
 
-    behaviors: [
-      Polymer.NeonAnimationRunnerBehavior
-    ],
+    behaviors: [Polymer.NeonAnimationRunnerBehavior],
 
     properties: {
 
-      opened: {
-        type: Boolean
-      },
+      opened: {type: Boolean},
 
       animationConfig: {
         type: Object,
         value: function() {
           return {
-            'entry': [{
-              name: 'scale-up-animation',
-              node: this
-            }],
-            'exit': [{
-              name: 'fade-out-animation',
-              node: this
-            }]
+            'entry': [{name: 'scale-up-animation', node: this}],
+                'exit': [{name: 'fade-out-animation', node: this}]
           }
         }
       }
 
     },
 
-    listeners: {
-      'neon-animation-finish': '_onAnimationFinish'
-    },
+    listeners: {'neon-animation-finish': '_onAnimationFinish'},
 
     _onAnimationFinish: function() {
       if (!this.opened) {
@@ -90,5 +77,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
   });
-
 </script>

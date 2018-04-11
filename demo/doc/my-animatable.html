@@ -28,14 +28,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </dom-module>
 
 <script>
-
   Polymer({
 
     is: 'my-animatable',
 
-    behaviors: [
-      Polymer.NeonAnimationRunnerBehavior
-    ],
+    behaviors: [Polymer.NeonAnimationRunnerBehavior],
 
     properties: {
 
@@ -43,17 +40,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: Object,
         value: function() {
           return {
-            name: 'scale-down-animation',
-            node: this
+            name: 'scale-down-animation', node: this
           }
         }
       }
 
     },
 
-    listeners: {
-      'neon-animation-finish': '_onNeonAnimationFinish'
-    },
+    listeners: {'neon-animation-finish': '_onNeonAnimationFinish'},
 
     animate: function() {
       this.playAnimation();
@@ -64,5 +58,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
   });
-
 </script>

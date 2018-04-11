@@ -81,14 +81,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </dom-module>
 
 <script>
-
   Polymer({
 
     is: 'animated-grid',
 
-    behaviors: [
-      Polymer.NeonSharedElementAnimatableBehavior
-    ],
+    behaviors: [Polymer.NeonSharedElementAnimatableBehavior],
 
     properties: {
 
@@ -119,9 +116,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               animation: 'transform-animation',
               transformFrom: 'translateY(100%)',
               transformTo: 'none',
-              timing: {
-                delay: 50
-              }
+              timing: {delay: 50}
             }]
           }
         }
@@ -132,7 +127,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     ready: function() {
       this.async(function() {
         var nodeList = Polymer.dom(this.root).querySelectorAll('.tile');
-        this.animationConfig['entry'][0].nodes = Array.prototype.slice.call(nodeList);
+        this.animationConfig['entry'][0].nodes =
+            Array.prototype.slice.call(nodeList);
       });
     },
 
@@ -141,5 +137,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
   });
-
 </script>

@@ -11,10 +11,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../polymer/polymer.html">
 
 <script>
-
   /**
-   * `Polymer.NeonAnimatableBehavior` is implemented by elements containing animations for use with
-   * elements implementing `Polymer.NeonAnimationRunnerBehavior`.
+   * `Polymer.NeonAnimatableBehavior` is implemented by elements containing
+   * animations for use with elements implementing
+   * `Polymer.NeonAnimationRunnerBehavior`.
    * @polymerBehavior
    */
   Polymer.NeonAnimatableBehavior = {
@@ -24,44 +24,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       /**
        * Animation configuration. See README for more info.
        */
-      animationConfig: {
-        type: Object
-      },
+      animationConfig: {type: Object},
 
       /**
-       * Convenience property for setting an 'entry' animation. Do not set `animationConfig.entry`
-       * manually if using this. The animated node is set to `this` if using this property.
+       * Convenience property for setting an 'entry' animation. Do not set
+       * `animationConfig.entry` manually if using this. The animated node is set
+       * to `this` if using this property.
        */
-      entryAnimation: {
-        observer: '_entryAnimationChanged',
-        type: String
-      },
+      entryAnimation: {observer: '_entryAnimationChanged', type: String},
 
       /**
-       * Convenience property for setting an 'exit' animation. Do not set `animationConfig.exit`
-       * manually if using this. The animated node is set to `this` if using this property.
+       * Convenience property for setting an 'exit' animation. Do not set
+       * `animationConfig.exit` manually if using this. The animated node is set
+       * to `this` if using this property.
        */
-      exitAnimation: {
-        observer: '_exitAnimationChanged',
-        type: String
-      }
+      exitAnimation: {observer: '_exitAnimationChanged', type: String}
 
     },
 
     _entryAnimationChanged: function() {
       this.animationConfig = this.animationConfig || {};
-      this.animationConfig['entry'] = [{
-        name: this.entryAnimation,
-        node: this
-      }];
+      this.animationConfig['entry'] = [{name: this.entryAnimation, node: this}];
     },
 
     _exitAnimationChanged: function() {
       this.animationConfig = this.animationConfig || {};
-      this.animationConfig['exit'] = [{
-        name: this.exitAnimation,
-        node: this
-      }];
+      this.animationConfig['exit'] = [{name: this.exitAnimation, node: this}];
     },
 
     _copyProperties: function(config1, config2) {
@@ -72,9 +60,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _cloneConfig: function(config) {
-      var clone = {
-        isClone: true
-      };
+      var clone = {isClone: true};
       this._copyProperties(clone, config);
       return clone;
     },
@@ -84,9 +70,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return;
       }
 
-      if(this.animationConfig.value && typeof this.animationConfig.value === 'function') {
-      	this._warn(this._logf('playAnimation', "Please put 'animationConfig' inside of your components 'properties' object instead of outside of it."));
-      	return;
+      if (this.animationConfig.value &&
+          typeof this.animationConfig.value === 'function') {
+        this._warn(this._logf(
+            'playAnimation',
+            'Please put \'animationConfig\' inside of your components \'properties\' object instead of outside of it.'));
+        return;
       }
 
       // type is optional
@@ -105,7 +94,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (thisConfig) {
         for (var config, index = 0; config = thisConfig[index]; index++) {
           if (config.animatable) {
-            config.animatable._getAnimationConfigRecursive(config.type || type, map, allConfigs);
+            config.animatable._getAnimationConfigRecursive(
+                config.type || type, map, allConfigs);
           } else {
             if (config.id) {
               var cachedConfig = map[config.id];
@@ -129,10 +119,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     /**
-     * An element implementing `Polymer.NeonAnimationRunnerBehavior` calls this method to configure
-     * an animation with an optional type. Elements implementing `Polymer.NeonAnimatableBehavior`
-     * should define the property `animationConfig`, which is either a configuration object
-     * or a map of animation type to array of configuration objects.
+     * An element implementing `Polymer.NeonAnimationRunnerBehavior` calls this
+     * method to configure an animation with an optional type. Elements
+     * implementing `Polymer.NeonAnimatableBehavior` should define the property
+     * `animationConfig`, which is either a configuration object or a map of
+     * animation type to array of configuration objects.
      */
     getAnimationConfig: function(type) {
       var map = {};
@@ -146,5 +137,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
   };
-
 </script>
