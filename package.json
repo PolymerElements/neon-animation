@@ -1,19 +1,50 @@
 {
-  "name": "@polymer/neon-animation",
-  "private": true,
   "description": "A system for animating Polymer-based web components",
+  "keywords": [
+    "web-components",
+    "web-component",
+    "polymer",
+    "web-animations"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/PolymerElements/neon-animation"
   },
+  "homepage": "https://github.com/PolymerElements/neon-animation",
+  "name": "@polymer/neon-animation",
   "license": "BSD-3-Clause",
   "devDependencies": {
     "@polymer/gen-typescript-declarations": "^1.2.2",
     "bower": "^1.8.0",
-    "webmat": "^0.2.0"
+    "webmat": "^0.2.0",
+    "@polymer/app-layout": "^3.0.0-pre.20",
+    "@polymer/iron-component-page": "^3.0.0-pre.20",
+    "@polymer/iron-flex-layout": "^3.0.0-pre.20",
+    "@polymer/iron-icon": "^3.0.0-pre.20",
+    "@polymer/iron-icons": "^3.0.0-pre.20",
+    "@polymer/paper-icon-button": "^3.0.0-pre.20",
+    "@polymer/paper-item": "^3.0.0-pre.20",
+    "@polymer/paper-styles": "^3.0.0-pre.20",
+    "web-animations-js": "^2.3.1",
+    "wct-browser-legacy": "^1.0.1",
+    "@webcomponents/webcomponentsjs": "^2.0.0"
   },
   "scripts": {
     "update-types": "bower install && gen-typescript-declarations --deleteExisting --outDir .",
     "format": "webmat && npm run update-types"
+  },
+  "version": "3.0.0-pre.20",
+  "resolutions": {
+    "inherits": "2.0.3",
+    "samsam": "1.1.3",
+    "supports-color": "3.1.2",
+    "type-detect": "1.0.0",
+    "@webcomponents/webcomponentsjs": "2.0.0-beta.2"
+  },
+  "author": "The Polymer Authors",
+  "dependencies": {
+    "@polymer/iron-resizable-behavior": "^3.0.0-pre.20",
+    "@polymer/iron-selector": "^3.0.0-pre.20",
+    "@polymer/polymer": "^3.0.0"
   }
 }
