@@ -21,7 +21,8 @@
   "dependencies": {
     "@polymer/iron-resizable-behavior": "^3.0.0-pre.1",
     "@polymer/iron-selector": "^3.0.0-pre.1",
-    "@polymer/polymer": "^3.0.0-pre.1"
+    "@polymer/polymer": "^3.0.0-pre.1",
+    "web-animations-js": "^2.3.1"
   },
   "devDependencies": {
     "@polymer/app-layout": "^3.0.0-pre.1",
@@ -32,7 +33,6 @@
     "@polymer/paper-item": "^3.0.0-pre.1",
     "@polymer/paper-styles": "^3.0.0-pre.1",
     "@polymer/test-fixture": "^3.0.0-pre.1",
-    "web-animations-js": "^2.3.1",
     "wct-browser-legacy": "0.0.1-pre.10",
     "@webcomponents/webcomponentsjs": "^1.0.0"
   }
