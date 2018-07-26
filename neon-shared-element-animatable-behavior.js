@@ -30,6 +30,6 @@ export const NeonSharedElementAnimatableBehaviorImpl = {
 
 };
 
-/** @polymerBehavior NeonSharedElementAnimatableBehavior */
+/** @polymerBehavior */
 export const NeonSharedElementAnimatableBehavior =
     [NeonAnimatableBehavior, NeonSharedElementAnimatableBehaviorImpl];

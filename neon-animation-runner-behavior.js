@@ -152,6 +152,6 @@ export const NeonAnimationRunnerBehaviorImpl = {
   }
 };
 
-/** @polymerBehavior NeonAnimationRunnerBehavior */
+/** @polymerBehavior */
 export const NeonAnimationRunnerBehavior =
     [NeonAnimatableBehavior, NeonAnimationRunnerBehaviorImpl];
