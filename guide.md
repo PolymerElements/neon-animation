@@ -58,7 +58,7 @@ Polymer({
 });
 ```
 
-[Live demo](http://morethanreal.github.io/neon-animation-demo/bower_components/neon-animation/demo/doc/basic.js)
+[Live demo](https://www.webcomponents.org/element/@polymer/neon-animation/demo/demo/doc/index.html)
 
 <a name="configuration"></a>
 ## Animation configuration
@@ -117,7 +117,7 @@ Polymer({
 });
 ```
 
-[Live demo](http://morethanreal.github.io/neon-animation-demo/bower_components/neon-animation/demo/doc/types.js)
+[Live demo](https://www.webcomponents.org/element/@polymer/neon-animation/demo/demo/doc/index.html)
 
 You can also use the convenience properties `entryAnimation` and `exitAnimation` to set `entry` and `exit` animations:
 
@@ -303,8 +303,8 @@ Group animations
 <a name="demos"></a>
 ## Demos
 
- * [Grid to full screen](http://morethanreal.github.io/neon-animation-demo/bower_components/neon-animation/demo/grid/index.js)
- * [Animation on load](http://morethanreal.github.io/neon-animation-demo/bower_components/neon-animation/demo/load/index.js)
- * [List item to detail](http://morethanreal.github.io/neon-animation-demo/bower_components/neon-animation/demo/list/index.js) (For narrow width)
- * [Dots to squares](http://morethanreal.github.io/neon-animation-demo/bower_components/neon-animation/demo/tiles/index.js)
- * [Declarative](http://morethanreal.github.io/neon-animation-demo/bower_components/neon-animation/demo/declarative/index.js)
+ * [Grid to full screen](https://www.webcomponents.org/element/@polymer/neon-animation/demo/demo/grid/index.html)
+ * [Animation on load](https://www.webcomponents.org/element/@polymer/neon-animation/demo/demo/load/index.html)
+ * [List item to detail](https://www.webcomponents.org/element/@polymer/neon-animation/demo/demo/list/index.html) (For narrow width)
+ * [Dots to squares](https://www.webcomponents.org/element/@polymer/neon-animation/demo/demo/tiles/index.html)
+ * [Declarative](https://www.webcomponents.org/element/@polymer/neon-animation/demo/demo/declarative/index.html)
