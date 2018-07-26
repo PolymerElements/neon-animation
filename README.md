@@ -78,7 +78,7 @@ class SampleElement extends mixinBehaviors([NeonAnimationRunnerBehavior], Polyme
       node: this,
     };
 
-    setTimeout(() => this.playAnimation, 1000);
+    setTimeout(() => this.playAnimation(), 1000);
   }
 }
 customElements.define('sample-element', SampleElement);
@@ -117,7 +117,7 @@ A simple element that implements NeonAnimatableBehavior.
             node: animatable,
           }
 
-          setTimeout(() => this.playAnimation, 1000);
+          setTimeout(() => this.playAnimation(), 1000);
         }
       }
       customElements.define('runner-element', SampleElement);
@@ -154,7 +154,7 @@ class SampleElement extends mixinBehaviors([NeonAnimationRunnerBehavior], Polyme
       node: this.$.animatable,
     };
 
-    setTimeout(() => this.playAnimation, 1000);
+    setTimeout(() => this.playAnimation(), 1000);
   }
 }
 customElements.define('sample-element', SampleElement);
@@ -264,7 +264,7 @@ class SampleElement extends mixinBehaviors([NeonAnimationRunnerBehavior], Polyme
       node: this.$.animatable,
     };
 
-    setTimeout(() => this.playAnimation, 1000);
+    setTimeout(() => this.playAnimation(), 1000);
   }
 }
 customElements.define('sample-element', SampleElement);
