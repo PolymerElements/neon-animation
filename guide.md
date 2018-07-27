@@ -1,9 +1,7 @@
 ---
 title: neon-animation
 summary: "A short guide to neon-animation and neon-animated-pages"
-tags: ['animation','core-animated-pages']
 elements: ['neon-animation','neon-animated-pages']
-updated: 2015-05-26
 ---
 
 # neon-animation
@@ -27,19 +25,19 @@ updated: 2015-05-26
 <a name="basic"></a>
 ## A basic animatable element
 
-Elements that can be animated should implement the `Polymer.NeonAnimatableBehavior` behavior, or `Polymer.NeonAnimationRunnerBehavior` if they're also responsible for running an animation.
+Elements that can be animated should implement the `NeonAnimatableBehavior` behavior, or `NeonAnimationRunnerBehavior` if they're also responsible for running an animation.
 
 ```js
 Polymer({
   is: 'my-animatable',
   behaviors: [
-    Polymer.NeonAnimationRunnerBehavior
+    NeonAnimationRunnerBehavior
   ],
   properties: {
     animationConfig: {
       value: function() {
         return {
-          // provided by neon-animation/animations/scale-down-animation.html
+          // provided by neon-animation/animations/scale-down-animation.js
           name: 'scale-down-animation',
           node: this
         }
@@ -60,7 +58,7 @@ Polymer({
 });
 ```
 
-[Live demo](http://morethanreal.github.io/neon-animation-demo/bower_components/neon-animation/demo/doc/basic.html)
+[Live demo](https://www.webcomponents.org/element/@polymer/neon-animation/demo/demo/doc/index.html)
 
 <a name="configuration"></a>
 ## Animation configuration
@@ -74,7 +72,7 @@ An element might run different animations, for example it might do something dif
 Polymer({
   is: 'my-dialog',
   behaviors: [
-    Polymer.NeonAnimationRunnerBehavior
+    NeonAnimationRunnerBehavior
   ],
   properties: {
     opened: {
@@ -84,12 +82,12 @@ Polymer({
       value: function() {
         return {
           'entry': {
-            // provided by neon-animation/animations/scale-up-animation.html
+            // provided by neon-animation/animations/scale-up-animation.js
             name: 'scale-up-animation',
             node: this
           },
           'exit': {
-            // provided by neon-animation-animations/fade-out-animation.html
+            // provided by neon-animation-animations/fade-out-animation.js
             name: 'fade-out-animation',
             node: this
           }
@@ -119,7 +117,7 @@ Polymer({
 });
 ```
 
-[Live demo](http://morethanreal.github.io/neon-animation-demo/bower_components/neon-animation/demo/doc/types.html)
+[Live demo](https://www.webcomponents.org/element/@polymer/neon-animation/demo/demo/doc/index.html)
 
 You can also use the convenience properties `entryAnimation` and `exitAnimation` to set `entry` and `exit` animations:
 
@@ -140,7 +138,7 @@ properties: {
 You can pass additional parameters to configure an animation in the animation configuration object.
 All animations should accept the following properties:
 
- * `name`: The name of an animation, ie. an element implementing `Polymer.NeonAnimationBehavior`.
+ * `name`: The name of an animation, ie. an element implementing `NeonAnimationBehavior`.
  * `node`: The target node to apply the animation to. Defaults to `this`.
  * `timing`: Timing properties to use in this animation. They match the [Web Animations Animation Effect Timing interface](https://w3c.github.io/web-animations/#the-animationeffecttiming-interface). The
  properties include the following:
@@ -176,7 +174,7 @@ animationConfig: {
 <a name="configuration-encapsulation"></a>
 ### Running animations encapsulated in children nodes
 
-You can include animations in the configuration that are encapsulated in a child element that implement `Polymer.NeonAnimatableBehavior` with the `animatable` property.
+You can include animations in the configuration that are encapsulated in a child element that implement `NeonAnimatableBehavior` with the `animatable` property.
 
 ```js
 animationConfig: {
@@ -195,9 +193,7 @@ animationConfig: {
 <a name="page-transitions"></a>
 ## Page transitions
 
-*The artist formerly known as `<core-animated-pages>`*
-
-The `neon-animated-pages` element manages a set of pages to switch between, and runs animations between the page transitions. It implements the `Polymer.IronSelectableBehavior` behavior. Each child node should implement `Polymer.NeonAnimatableBehavior` and define the `entry` and `exit` animations. During a page transition, the `entry` animation is run on the new page and the `exit` animation is run on the old page.
+The `neon-animated-pages` element manages a set of pages to switch between, and runs animations between the page transitions. It implements the `IronSelectableBehavior` behavior. Each child node should implement `NeonAnimatableBehavior` and define the `entry` and `exit` animations. During a page transition, the `entry` animation is run on the new page and the `exit` animation is run on the old page.
 
 <a name="shared-element"></a>
 ### Shared element animations
@@ -307,8 +303,8 @@ Group animations
 <a name="demos"></a>
 ## Demos
 
- * [Grid to full screen](http://morethanreal.github.io/neon-animation-demo/bower_components/neon-animation/demo/grid/index.html)
- * [Animation on load](http://morethanreal.github.io/neon-animation-demo/bower_components/neon-animation/demo/load/index.html)
- * [List item to detail](http://morethanreal.github.io/neon-animation-demo/bower_components/neon-animation/demo/list/index.html) (For narrow width)
- * [Dots to squares](http://morethanreal.github.io/neon-animation-demo/bower_components/neon-animation/demo/tiles/index.html)
- * [Declarative](http://morethanreal.github.io/neon-animation-demo/bower_components/neon-animation/demo/declarative/index.html)
+ * [Grid to full screen](https://www.webcomponents.org/element/@polymer/neon-animation/demo/demo/grid/index.html)
+ * [Animation on load](https://www.webcomponents.org/element/@polymer/neon-animation/demo/demo/load/index.html)
+ * [List item to detail](https://www.webcomponents.org/element/@polymer/neon-animation/demo/demo/list/index.html) (For narrow width)
+ * [Dots to squares](https://www.webcomponents.org/element/@polymer/neon-animation/demo/demo/tiles/index.html)
+ * [Declarative](https://www.webcomponents.org/element/@polymer/neon-animation/demo/demo/declarative/index.html)

@@ -1,21 +1,24 @@
 /**
 @license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+This code may only be used under the BSD style license found at
+http://polymer.github.io/LICENSE.txt The complete set of authors may be found at
+http://polymer.github.io/AUTHORS.txt The complete set of contributors may be
+found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as
+part of the polymer project is also subject to an additional IP rights grant
+found at http://polymer.github.io/PATENTS.txt
 */
 import '@polymer/polymer/polymer-legacy.js';
-
 import '@polymer/paper-styles/typography.js';
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
-import { NeonSharedElementAnimatableBehavior } from '../../neon-shared-element-animatable-behavior.js';
 import '../shared-styles.js';
-import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-import { dom } from '@polymer/polymer/lib/legacy/polymer.dom.js';
+
+import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import {dom} from '@polymer/polymer/lib/legacy/polymer.dom.js';
+import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+
+import {NeonSharedElementAnimatableBehavior} from '../../neon-shared-element-animatable-behavior.js';
+
 Polymer({
   _template: html`
     <style include="shared-styles">
@@ -74,11 +77,11 @@ Polymer({
     </style>
 
     <template is="dom-repeat" items="[[config]]">
-      <div item="[[item]]" class\$="[[_computeTileClass(item.color)]]" on-click="_onClick">
+      <div item="[[item]]" class$="[[_computeTileClass(item.color)]]" on-click="_onClick">
         <span>[[item.value]]</span>
       </div>
     </template>
-`,
+  `,
 
   is: 'animated-grid',
   behaviors: [NeonSharedElementAnimatableBehavior],
@@ -108,8 +111,16 @@ Polymer({
       value: function() {
         return {
           'exit': [
-            {name: 'ripple-animation', id: 'ripple', fromPage: this},
-            {name: 'hero-animation', id: 'hero', fromPage: this}
+            {
+              name: 'ripple-animation',
+              id: 'ripple',
+              fromPage: this,
+            },
+            {
+              name: 'hero-animation',
+              id: 'hero',
+              fromPage: this,
+            }
           ]
         }
       }
@@ -129,10 +140,13 @@ Polymer({
     }
 
     // configure the page animation
-    this.sharedElements = {'hero': target, 'ripple': target};
+    this.sharedElements = {
+      'hero': target,
+      'ripple': target,
+    };
     this.animationConfig['exit'][0].gesture = {
       x: event.x || event.pageX,
-      y: event.y || event.pageY
+      y: event.y || event.pageY,
     };
 
     this.fire('tile-click', {tile: target, data: target.item});
