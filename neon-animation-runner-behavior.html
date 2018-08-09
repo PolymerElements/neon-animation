@@ -137,8 +137,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       for (var k in this._active) {
         var entries = this._active[k]
 
-                      for (var j in entries) {
-          entries[j].animation.cancel();
+          for (var j in entries) {
+            if (Object.prototype.hasOwnProperty.call(entries,j)){
+              entries[j].animation.cancel();
+            }
         }
       }
 
