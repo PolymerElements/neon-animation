@@ -25,10 +25,14 @@
     "@polymer/paper-styles": "^3.0.0-pre.20",
     "web-animations-js": "^2.3.1",
     "wct-browser-legacy": "^1.0.1",
-    "@webcomponents/webcomponentsjs": "^2.0.0"
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "@polymer/gen-typescript-declarations": "^1.5.0",
+    "lodash": "^3.0.0"
   },
   "scripts": {
-    "format": "webmat"
+    "format": "webmat",
+    "generate-types": "gen-typescript-declarations --deleteExisting --outDir .",
+    "prepack": "npm run generate-types"
   },
   "version": "3.0.0-pre.20",
   "author": "The Polymer Authors",
