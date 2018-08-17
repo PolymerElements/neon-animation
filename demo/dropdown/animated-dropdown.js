@@ -43,10 +43,10 @@ Polymer({
           'entry': [{
             name: 'scale-up-animation',
             node: this,
-            transformOrigin: '0 0'
+            transformOrigin: '0 0',
           }],
-              'exit': [{name: 'fade-out-animation', node: this}]
-        }
+          'exit': [{name: 'fade-out-animation', node: this}],
+        };
       }
     },
 
