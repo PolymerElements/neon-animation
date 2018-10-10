@@ -1,3 +1,7 @@
+⚠️ **neon-animation is deprecated** ⚠️
+
+Please use the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) or [CSS animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations) instead. See [*An Update on Neon Animation*](https://www.polymer-project.org/blog/2017-07-12-an-update-on-neon-animation) for more information.
+
 [![Published on NPM](https://img.shields.io/npm/v/@polymer/neon-animation.svg)](https://www.npmjs.com/package/@polymer/neon-animation)
 [![Build status](https://travis-ci.org/PolymerElements/neon-animation.svg?branch=master)](https://travis-ci.org/PolymerElements/neon-animation)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://webcomponents.org/element/@polymer/neon-animation)
