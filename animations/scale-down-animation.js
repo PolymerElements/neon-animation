@@ -30,6 +30,7 @@ Configuration:
 Polymer({
 
   is: 'scale-down-animation',
+  _template: null,
 
   behaviors: [NeonAnimationBehavior],
 

@@ -28,6 +28,7 @@ Configuration:
 */
 Polymer({
   is: 'slide-up-animation',
+  _template: null,
 
   behaviors: [NeonAnimationBehavior],
 

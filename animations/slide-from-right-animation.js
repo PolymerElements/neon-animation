@@ -31,6 +31,7 @@ Configuration:
 Polymer({
 
   is: 'slide-from-right-animation',
+  _template: null,
 
   behaviors: [NeonAnimationBehavior],
 

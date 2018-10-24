@@ -27,6 +27,7 @@ Configuration:
 Polymer({
 
   is: 'fade-in-animation',
+  _template: null,
 
   behaviors: [NeonAnimationBehavior],
 
