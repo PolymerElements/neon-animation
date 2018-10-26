@@ -36,6 +36,7 @@ Configuration:
 Polymer({
 
   is: 'hero-animation',
+  _template: null,
 
   behaviors: [NeonSharedElementAnimationBehavior],
 

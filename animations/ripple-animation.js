@@ -39,6 +39,7 @@ Configuration:
 Polymer({
 
   is: 'ripple-animation',
+  _template: null,
 
   behaviors: [NeonSharedElementAnimationBehavior],
 
