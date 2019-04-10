@@ -141,10 +141,12 @@ export const NeonAnimationRunnerBehaviorImpl = {
    */
   cancelAnimation: function() {
     for (var k in this._active) {
-      var entries = this._active[k]
+      var entries = this._active[k];
 
-                    for (var j in entries) {
-        entries[j].animation.cancel();
+      for (var j in entries) {
+        if (entries[j].animation && entries[j].animation.cancel) {
+          entries[j].animation.cancel();
+        }
       }
     }
 
