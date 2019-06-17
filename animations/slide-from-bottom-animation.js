@@ -28,6 +28,7 @@ Configuration:
 */
 Polymer({
   is: 'slide-from-bottom-animation',
+  /** @override */
   _template: null,
 
   behaviors: [NeonAnimationBehavior],

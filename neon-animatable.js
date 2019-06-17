@@ -31,6 +31,7 @@ import {NeonAnimatableBehavior} from './neon-animatable-behavior.js';
 ```
 */
 Polymer({
+  /** @override */
   _template: html`
     <style>
       :host {

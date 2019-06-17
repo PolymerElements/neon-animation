@@ -20,6 +20,7 @@ animation for elements that animate from display:none.
 Polymer({
 
   is: 'opaque-animation',
+  /** @override */
   _template: null,
 
   behaviors: [NeonAnimationBehavior],

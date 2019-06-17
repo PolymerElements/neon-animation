@@ -43,6 +43,7 @@ export const NeonAnimationBehavior = {
   // configure: function(config) {
   // },
 
+  /** @override */
   created: function() {
     if (!document.body.animate) {
       console.warn(

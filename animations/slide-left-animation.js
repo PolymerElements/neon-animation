@@ -28,6 +28,7 @@ Configuration:
 */
 Polymer({
   is: 'slide-left-animation',
+  /** @override */
   _template: null,
 
   behaviors: [NeonAnimationBehavior],
