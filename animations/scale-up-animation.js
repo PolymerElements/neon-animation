@@ -30,6 +30,7 @@ Configuration:
 Polymer({
 
   is: 'scale-up-animation',
+  /** @override */
   _template: null,
 
   behaviors: [NeonAnimationBehavior],

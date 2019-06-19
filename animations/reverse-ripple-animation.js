@@ -37,6 +37,7 @@ Configuration:
 */
 Polymer({
   is: 'reverse-ripple-animation',
+  /** @override */
   _template: null,
 
   behaviors: [NeonSharedElementAnimationBehavior],

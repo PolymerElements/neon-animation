@@ -27,6 +27,7 @@ Configuration:
 Polymer({
 
   is: 'fade-out-animation',
+  /** @override */
   _template: null,
 
   behaviors: [NeonAnimationBehavior],

@@ -29,6 +29,7 @@ Configuration:
 */
 Polymer({
   is: 'cascaded-animation',
+  /** @override */
   _template: null,
 
   behaviors: [NeonAnimationBehavior],

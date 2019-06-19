@@ -30,6 +30,7 @@ Configuration:
 */
 Polymer({
   is: 'transform-animation',
+  /** @override */
   _template: null,
 
   behaviors: [NeonAnimationBehavior],

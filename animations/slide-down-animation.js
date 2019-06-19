@@ -29,6 +29,7 @@ Configuration:
 Polymer({
 
   is: 'slide-down-animation',
+  /** @override */
   _template: null,
 
   behaviors: [NeonAnimationBehavior],

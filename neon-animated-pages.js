@@ -27,10 +27,10 @@ switching between them. Its children pages should implement
 `NeonAnimatableBehavior` and define `entry` and `exit` animations to be
 run when switching to or switching out of the page.
 
-@group Neon Elements
 @element neon-animated-pages
 */
 Polymer({
+  /** @override */
   _template: html`
     <style>
       :host {
